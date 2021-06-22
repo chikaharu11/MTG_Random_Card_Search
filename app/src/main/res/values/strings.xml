@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Magic The Gathering Random Card Search</string>
+    <string name="create">create</string>
+    <string name="back">back</string>
+    <string name="exit">exit</string>
+    <string name="creature">creature</string>
+    <string name="instant">instant</string>
+    <string name="sorcery">sorcery</string>
+    <string name="textview">https://scryfall.com/random?q=</string>
 </resources>
