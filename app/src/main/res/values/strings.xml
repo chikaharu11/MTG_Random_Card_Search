@@ -3,8 +3,12 @@
     <string name="create">create</string>
     <string name="back">back</string>
     <string name="exit">exit</string>
-    <string name="creature">creature</string>
-    <string name="instant">instant</string>
-    <string name="sorcery">sorcery</string>
     <string name="textview">https://scryfall.com/random?q=</string>
+    <string name="checkbox">Creature</string>
+    <string name="checkbox2">Planeswalker</string>
+    <string name="checkbox3">Artifact</string>
+    <string name="checkbox4">Instant</string>
+    <string name="checkbox5">Sorcery</string>
+    <string name="checkbox6">Enchantment</string>
+    <string name="checkbox7">Land</string>
 </resources>

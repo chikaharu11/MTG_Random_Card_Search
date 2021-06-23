@@ -8,12 +8,19 @@ import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.RadioButton
 import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
 
     var text = ""
+    var text2 = ""
+    var text3 = ""
+    var text4 = ""
+    var text5 = ""
+    var text6 = ""
+    var text7 = ""
     @SuppressLint("SetJavaScriptEnabled", "SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,18 +38,30 @@ class MainActivity : AppCompatActivity() {
                 return false
             }
         }
-        findViewById<RadioButton>(R.id.radioButton).setOnCheckedChangeListener { _, _ ->
-            text = "t:creature"
-            findViewById<TextView>(R.id.textView).text = "https://scryfall.com/random?q=$text"
+        val checkbox = findViewById<CheckBox>(R.id.checkBox)
+        val checkbox2 = findViewById<CheckBox>(R.id.checkBox2)
+        checkbox.setOnCheckedChangeListener { _, _ ->
+            if (checkbox.isChecked) {
+                text = "t:creature"
+                findViewById<TextView>(R.id.textView).text = "https://scryfall.com/random?q=$text $text2"
+            } else {
+                text = ""
+                findViewById<TextView>(R.id.textView).text = "https://scryfall.com/random?q=$text $text2"
+            }
         }
-        findViewById<RadioButton>(R.id.radioButton2).setOnCheckedChangeListener { _, _ ->
-            text = "t:instant"
-            findViewById<TextView>(R.id.textView).text = "https://scryfall.com/random?q=$text"
+        checkbox2.setOnCheckedChangeListener { _, _ ->
+            if (checkbox2.isChecked) {
+                text2 = "t:planeswalker"
+                findViewById<TextView>(R.id.textView).text = "https://scryfall.com/random?q=$text $text2"
+            } else {
+                text2 = ""
+                findViewById<TextView>(R.id.textView).text = "https://scryfall.com/random?q=$text $text2"
+            }
         }
 
         findViewById<Button>(R.id.button).setOnClickListener{
             webView.visibility = View.VISIBLE
-            webView.loadUrl("https://scryfall.com/random?q=$text")
+            webView.loadUrl("https://scryfall.com/random?q=$text $text2")
         }
         findViewById<Button>(R.id.button2).setOnClickListener{
             webView.visibility = View.INVISIBLE
