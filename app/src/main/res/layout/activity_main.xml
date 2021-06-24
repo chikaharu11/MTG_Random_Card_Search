@@ -13,8 +13,7 @@
         android:visibility="invisible"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp" >
-    </WebView>
+        tools:layout_editor_absoluteY="1dp" />
 
 
     <CheckBox
@@ -133,12 +132,15 @@
         app:layout_constraintStart_toEndOf="@+id/button"
         tools:ignore="MissingConstraints" />
 
-    <TextView
-        android:id="@+id/textView"
+    <EditText
+        android:id="@+id/editText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/textview"
+        android:text="@string/edittext"
         app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:autofillHints=""
+        android:inputType="text"
+        tools:ignore="LabelFor,TextFields" />
 </androidx.constraintlayout.widget.ConstraintLayout>

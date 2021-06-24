@@ -3,7 +3,7 @@
     <string name="create">create</string>
     <string name="back">back</string>
     <string name="exit">exit</string>
-    <string name="textview">https://scryfall.com/random?q=</string>
+    <string name="edittext">https://scryfall.com/random?q=</string>
     <string name="checkbox">Creature</string>
     <string name="checkbox2">Planeswalker</string>
     <string name="checkbox3">Artifact</string>
