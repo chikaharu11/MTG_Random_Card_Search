@@ -20,6 +20,12 @@ class MainActivity : AppCompatActivity() {
     private var text7 = ""
     private var text8 = ""
     private var text9 = ""
+    private var text10 = ""
+    private var text11 = ""
+    private var text12 = ""
+    private var text13 = ""
+    private var text14 = ""
+    private var text15 = ""
 
     @SuppressLint("SetJavaScriptEnabled", "SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,6 +53,12 @@ class MainActivity : AppCompatActivity() {
         val checkbox5 = findViewById<CheckBox>(R.id.checkBox5)
         val checkbox6 = findViewById<CheckBox>(R.id.checkBox6)
         val checkbox7 = findViewById<CheckBox>(R.id.checkBox7)
+        val checkbox8 = findViewById<CheckBox>(R.id.checkBox8)
+        val checkbox9 = findViewById<CheckBox>(R.id.checkBox9)
+        val checkbox10 = findViewById<CheckBox>(R.id.checkBox10)
+        val checkbox11 = findViewById<CheckBox>(R.id.checkBox11)
+        val checkbox12 = findViewById<CheckBox>(R.id.checkBox12)
+        val checkbox13 = findViewById<CheckBox>(R.id.checkBox13)
 
         val spinner = findViewById<Spinner>(R.id.spinner)
 

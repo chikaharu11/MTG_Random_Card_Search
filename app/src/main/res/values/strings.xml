@@ -11,4 +11,10 @@
     <string name="checkbox6">Enchantment</string>
     <string name="checkbox7">Land</string>
     <string name="name">https://scryfall.com/random?q=</string>
+    <string name="checkbox8">白</string>
+    <string name="checkbox9">青</string>
+    <string name="checkbox10">黒</string>
+    <string name="checkbox11">赤</string>
+    <string name="checkbox12">緑</string>
+    <string name="checkbox13">無</string>
 </resources>
