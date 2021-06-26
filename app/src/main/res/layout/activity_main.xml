@@ -11,9 +11,9 @@
         android:layout_width="match_parent"
         android:layout_height="600dp"
         android:visibility="invisible"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp" />
+        tools:layout_editor_absoluteX="1dp" />
 
 
     <CheckBox
@@ -100,6 +100,22 @@
         app:layout_constraintTop_toBottomOf="@+id/checkBox6"
         tools:ignore="MissingConstraints" />
 
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/checkBox"
+        tools:ignore="MissingConstraints" />
+
+    <Spinner
+        android:id="@+id/spinner2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/checkBox2"
+        tools:ignore="MissingConstraints" />
+
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
@@ -133,14 +149,16 @@
         tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/searchText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/edittext"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        android:text="@string/name"
         app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:autofillHints=""
-        android:inputType="text"
-        tools:ignore="LabelFor,TextFields" />
+        tools:ignore="LabelFor,MissingConstraints" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
