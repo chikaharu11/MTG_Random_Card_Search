@@ -17,4 +17,6 @@
     <string name="checkbox11">赤</string>
     <string name="checkbox12">緑</string>
     <string name="checkbox13">無</string>
+    <string name="checkbox14">disable UN series</string>
+    <string name="checkbox15">FirstPrint</string>
 </resources>
