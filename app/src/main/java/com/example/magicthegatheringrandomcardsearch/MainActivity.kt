@@ -69,18 +69,14 @@ class MainActivity : AppCompatActivity() {
 
         val spinnerItems = arrayOf("指定しない", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17以上" )
 
-        // Adapterの生成
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, spinnerItems)
 
-        // 選択肢の各項目のレイアウト
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
-        // AdapterをSpinnerのAdapterとして設定
         spinner.adapter = adapter
 
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
 
-            // 項目が選択された時に呼ばれる
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 if (!spinner.isFocusable) {
                     spinner.isFocusable = true
@@ -101,7 +97,6 @@ class MainActivity : AppCompatActivity() {
                 edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7)($color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
             }
 
-            // 基本的には呼ばれないが、何らかの理由で選択されることなく項目が閉じられたら呼ばれる
             override fun onNothingSelected(parent: AdapterView<*>?) {
 
             }
@@ -112,18 +107,14 @@ class MainActivity : AppCompatActivity() {
 
         val spinnerItems2 = arrayOf("指定しない", "standard", "future", "historic", "gladiator", "pioneer", "modern", "legacy", "pauper", "vintage", "penny", "commander", "brawl", "duel", "oldschool", "premodern")
 
-        // Adapterの生成
         val adapter2 = ArrayAdapter(this, android.R.layout.simple_spinner_item, spinnerItems2)
 
-        // 選択肢の各項目のレイアウト
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
-        // AdapterをSpinnerのAdapterとして設定
         spinner2.adapter = adapter2
 
         spinner2.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
 
-            // 項目が選択された時に呼ばれる
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 if (!spinner2.isFocusable) {
                     spinner2.isFocusable = true
@@ -140,8 +131,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7)($color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
             }
-
-            // 基本的には呼ばれないが、何らかの理由で選択されることなく項目が閉じられたら呼ばれる
+            
             override fun onNothingSelected(parent: AdapterView<*>?) {
 
             }

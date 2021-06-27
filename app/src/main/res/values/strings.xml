@@ -1,22 +1,24 @@
 <resources>
     <string name="app_name">Magic The Gathering Random Card Search</string>
-    <string name="create">create</string>
-    <string name="back">back</string>
-    <string name="exit">exit</string>
-    <string name="checkbox">Creature</string>
-    <string name="checkbox2">Planeswalker</string>
-    <string name="checkbox3">Artifact</string>
-    <string name="checkbox4">Instant</string>
-    <string name="checkbox5">Sorcery</string>
-    <string name="checkbox6">Enchantment</string>
-    <string name="checkbox7">Land</string>
+    <string name="create">ランダム検索</string>
+    <string name="back">設定に戻る</string>
+    <string name="exit">終了する</string>
+    <string name="checkbox">クリーチャー</string>
+    <string name="checkbox2">プレインズウォーカー</string>
+    <string name="checkbox3">アーティファクト</string>
+    <string name="checkbox4">インスタント</string>
+    <string name="checkbox5">ソーサリー</string>
+    <string name="checkbox6">エンチャント</string>
+    <string name="checkbox7">土地</string>
     <string name="name">https://scryfall.com/random?q=</string>
     <string name="checkbox8">白</string>
     <string name="checkbox9">青</string>
     <string name="checkbox10">黒</string>
     <string name="checkbox11">赤</string>
     <string name="checkbox12">緑</string>
-    <string name="checkbox13">無</string>
-    <string name="checkbox14">disable UN series</string>
-    <string name="checkbox15">FirstPrint</string>
+    <string name="checkbox13">無色</string>
+    <string name="checkbox14">アン・シリーズを除外</string>
+    <string name="checkbox15">初収録時のカードを表示</string>
+    <string name="textview">マナコスト</string>
+    <string name="textview2">フォーマット</string>
 </resources>
