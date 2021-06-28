@@ -7,6 +7,7 @@ import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
@@ -36,6 +37,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val webView: WebView = findViewById(R.id.webView)
+
+        webView.settings.builtInZoomControls = true
         webView.settings.javaScriptEnabled = true
         webView.loadUrl("https://scryfall.com/")
 
@@ -49,6 +52,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         val edittext = findViewById<EditText>(R.id.searchText)
+
         val checkbox = findViewById<CheckBox>(R.id.checkBox)
         val checkbox2 = findViewById<CheckBox>(R.id.checkBox2)
         val checkbox3 = findViewById<CheckBox>(R.id.checkBox3)
@@ -64,6 +68,11 @@ class MainActivity : AppCompatActivity() {
         val checkbox13 = findViewById<CheckBox>(R.id.checkBox13)
         val checkbox14 = findViewById<CheckBox>(R.id.checkBox14)
         val checkbox15 = findViewById<CheckBox>(R.id.checkBox15)
+
+        val button = findViewById<Button>(R.id.button)
+        val button2 = findViewById<Button>(R.id.button2)
+        val button3 = findViewById<Button>(R.id.button3)
+        val button4 = findViewById<Button>(R.id.button4)
 
         val spinner = findViewById<Spinner>(R.id.spinner)
 
@@ -282,12 +291,27 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        findViewById<Button>(R.id.button).setOnClickListener{
+        button.setOnClickListener{
             webView.visibility = View.VISIBLE
             webView.loadUrl(edittext.text.toString())
         }
-        findViewById<Button>(R.id.button2).setOnClickListener{
+        button2.setOnClickListener{
             webView.visibility = View.INVISIBLE
+        }
+        button3.setOnClickListener{
+            AlertDialog.Builder(this)
+                .setTitle(R.string.exit2)
+                .setPositiveButton("YES") { _, _ ->
+                    finish()
+                }
+                .setNegativeButton("NO") { _, _ ->
+
+                }
+                .show()
+        }
+        button4.setOnClickListener{
+            webView.visibility = View.VISIBLE
+            webView.loadUrl("https://scryfall.com/random?q=type:vanguard")
         }
     }
 }
