@@ -19,8 +19,8 @@
     <string name="checkbox11">赤</string>
     <string name="checkbox12">緑</string>
     <string name="checkbox13">無色</string>
-    <string name="checkbox14">アン・シリーズを除外</string>
-    <string name="checkbox15">初収録時のカードを表示</string>
+    <string name="checkbox14">アン・シリーズを除く</string>
+    <string name="checkbox15">初収録時のカード画像</string>
     <string name="textview">マナコスト</string>
     <string name="textview2">フォーマット</string>
     <string name="button4">ヴァンガード</string>
