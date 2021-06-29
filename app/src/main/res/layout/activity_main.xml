@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-
     <WebView
         android:id="@+id/webView"
         android:layout_width="match_parent"
@@ -115,26 +114,27 @@
         tools:ignore="MissingConstraints" />
 
     <RadioGroup
+        android:id="@+id/radioGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@+id/checkBox8"
-        app:layout_constraintTop_toTopOf="@id/checkBox8"
+        app:layout_constraintStart_toStartOf="@+id/checkBox8"
+        app:layout_constraintTop_toBottomOf="@+id/checkBox11"
         tools:ignore="MissingConstraints">
 
         <RadioButton
-            android:text="@string/radiobutton"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="@string/radiobutton" />
 
         <RadioButton
-            android:text="@string/radiobutton2"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="@string/radiobutton2" />
 
         <RadioButton
-            android:text="@string/radiobutton3"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="@string/radiobutton3" />
 
     </RadioGroup>
 
@@ -152,9 +152,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/checkbox9"
-        app:layout_constraintBottom_toTopOf="@+id/checkBox10"
-        app:layout_constraintStart_toStartOf="@+id/checkBox15"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox8"
+        app:layout_constraintStart_toEndOf="@+id/checkBox8"
+        app:layout_constraintTop_toTopOf="@+id/checkBox8"
         tools:ignore="MissingConstraints" />
 
     <CheckBox
@@ -162,9 +161,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/checkbox10"
-        app:layout_constraintBottom_toTopOf="@+id/checkBox11"
-        app:layout_constraintStart_toStartOf="@+id/checkBox15"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox9"
+        app:layout_constraintStart_toEndOf="@+id/checkBox9"
+        app:layout_constraintTop_toTopOf="@+id/checkBox8"
         tools:ignore="MissingConstraints" />
 
     <CheckBox
@@ -172,7 +170,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/checkbox11"
-        app:layout_constraintBottom_toTopOf="@+id/checkBox12"
         app:layout_constraintStart_toStartOf="@+id/checkBox15"
         app:layout_constraintTop_toBottomOf="@+id/checkBox10"
         tools:ignore="MissingConstraints" />
@@ -182,9 +179,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/checkbox12"
-        app:layout_constraintBottom_toTopOf="@+id/checkBox13"
-        app:layout_constraintStart_toStartOf="@+id/checkBox15"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox11"
+        app:layout_constraintStart_toEndOf="@+id/checkBox11"
+        app:layout_constraintTop_toBottomOf="@+id/checkBox8"
         tools:ignore="MissingConstraints" />
 
     <CheckBox
@@ -192,9 +188,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/checkbox13"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
-        app:layout_constraintStart_toStartOf="@+id/checkBox15"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox12"
+        app:layout_constraintStart_toEndOf="@+id/checkBox12"
+        app:layout_constraintTop_toBottomOf="@+id/checkBox9"
         tools:ignore="MissingConstraints" />
 
     <CheckBox
@@ -227,15 +222,13 @@
         app:layout_constraintTop_toBottomOf="@+id/checkBox7"
         tools:ignore="MissingConstraints" />
 
-    <TextView
-        android:id="@+id/textView"
+    <Spinner
+        android:id="@+id/spinner2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/textview"
-        android:textColor="#000000"
-        app:layout_constraintBottom_toTopOf="@+id/spinner"
+        app:layout_constraintBottom_toTopOf="@+id/checkBox14"
         app:layout_constraintStart_toStartOf="@+id/checkBox15"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox13"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -258,13 +251,15 @@
         app:layout_constraintTop_toBottomOf="@+id/textView"
         tools:ignore="MissingConstraints" />
 
-    <Spinner
-        android:id="@+id/spinner2"
+    <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/checkBox14"
+        android:text="@string/textview"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toTopOf="@+id/spinner"
         app:layout_constraintStart_toStartOf="@+id/checkBox15"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup"
         tools:ignore="MissingConstraints" />
 
     <Button
