@@ -109,10 +109,34 @@
         android:layout_marginStart="7dp"
         android:layout_marginLeft="7dp"
         android:text="@string/checkbox7"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintBottom_toTopOf="@+id/checkBox16"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/checkBox6"
         tools:ignore="MissingConstraints" />
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/checkBox8"
+        app:layout_constraintTop_toTopOf="@id/checkBox8"
+        tools:ignore="MissingConstraints">
+
+        <RadioButton
+            android:text="@string/radiobutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <RadioButton
+            android:text="@string/radiobutton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <RadioButton
+            android:text="@string/radiobutton3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RadioGroup>
 
     <CheckBox
         android:id="@+id/checkBox8"
@@ -190,6 +214,18 @@
         android:text="@string/checkbox15"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/checkBox7" />
+
+    <CheckBox
+        android:id="@+id/checkBox16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:layout_marginLeft="7dp"
+        android:text="@string/checkbox16"
+        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBox7"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/textView"
