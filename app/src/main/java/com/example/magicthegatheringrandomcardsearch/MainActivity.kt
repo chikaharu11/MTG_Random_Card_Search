@@ -68,6 +68,10 @@ class MainActivity : AppCompatActivity() {
         val checkbox13 = findViewById<CheckBox>(R.id.checkBox13)
         val checkbox14 = findViewById<CheckBox>(R.id.checkBox14)
         val checkbox15 = findViewById<CheckBox>(R.id.checkBox15)
+        val checkbox16 = findViewById<CheckBox>(R.id.checkBox16)
+        val checkbox17 = findViewById<CheckBox>(R.id.checkBox17)
+
+        val radigroup = findViewById<RadioGroup>(R.id.radioGroup)
 
         val button = findViewById<Button>(R.id.button)
         val button2 = findViewById<Button>(R.id.button2)
@@ -288,6 +292,32 @@ class MainActivity : AppCompatActivity() {
             } else {
                 firstprint = ""
                 edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7)($color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+            }
+        }
+
+        checkbox17.setOnCheckedChangeListener { _, _ ->
+            if (checkbox17.isChecked) {
+                checkbox.isChecked = false
+                checkbox2.isChecked = false
+                checkbox3.isChecked = false
+                checkbox4.isChecked = false
+                checkbox5.isChecked = false
+                checkbox6.isChecked = false
+                checkbox7.isChecked = false
+                checkbox8.isChecked = false
+                checkbox9.isChecked = false
+                checkbox10.isChecked = false
+                checkbox11.isChecked = false
+                checkbox12.isChecked = false
+                checkbox13.isChecked = false
+                checkbox14.isChecked = false
+                checkbox15.isChecked = false
+                checkbox16.isChecked = false
+                checkbox17.isChecked = false
+                radigroup.clearCheck()
+                spinner.setSelection(0)
+                spinner2.setSelection(0)
+                edittext.setText("https://scryfall.com/random?q=")
             }
         }
 
