@@ -9,6 +9,7 @@ import android.webkit.WebViewClient
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 
 class MainActivity : AppCompatActivity() {
 
@@ -36,7 +37,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val webView: WebView = findViewById(R.id.webView)
+        val webView = findViewById<WebView>(R.id.webView)
+        val layoutView =findViewById<ConstraintLayout>(R.id.layoutView)
 
         webView.settings.builtInZoomControls = true
         webView.settings.javaScriptEnabled = true
@@ -322,11 +324,13 @@ class MainActivity : AppCompatActivity() {
         }
 
         button.setOnClickListener{
+            layoutView.visibility = View.INVISIBLE
             webView.visibility = View.VISIBLE
             webView.loadUrl(edittext.text.toString())
         }
         button2.setOnClickListener{
             webView.visibility = View.INVISIBLE
+            layoutView.visibility = View.VISIBLE
         }
         button3.setOnClickListener{
             AlertDialog.Builder(this)
@@ -340,6 +344,7 @@ class MainActivity : AppCompatActivity() {
                 .show()
         }
         button4.setOnClickListener{
+            layoutView.visibility = View.INVISIBLE
             webView.visibility = View.VISIBLE
             webView.loadUrl("https://scryfall.com/random?q=type:vanguard")
         }
