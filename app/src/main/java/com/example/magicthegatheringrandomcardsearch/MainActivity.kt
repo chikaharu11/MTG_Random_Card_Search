@@ -84,6 +84,12 @@ class MainActivity : AppCompatActivity() {
         val button3 = findViewById<Button>(R.id.button3)
         val button4 = findViewById<Button>(R.id.button4)
 
+        fun check(){
+            if (!checkbox.isChecked) {
+                edittext.setText("https://scryfall.com/random?q=")
+            }
+        }
+
         val spinner = findViewById<Spinner>(R.id.spinner)
 
         val spinnerItems = arrayOf("指定しない", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17以上" )
@@ -164,6 +170,7 @@ class MainActivity : AppCompatActivity() {
             } else {
                 type = ""
                 edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                check()
             }
         }
         checkbox2.setOnCheckedChangeListener { _, _ ->
@@ -221,10 +228,12 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        when{
-            radiobutton.isChecked -> edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
-            radiobutton2.isChecked -> edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)(Color=$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
-            radiobutton3.isChecked -> edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)(Color<=$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+        radigroup.setOnCheckedChangeListener { _, _ ->
+            when {
+                radiobutton.isChecked -> edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                radiobutton2.isChecked -> edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)(Color=$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                radiobutton3.isChecked -> edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)(Color<=$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+            }
         }
 
         checkbox8.setOnCheckedChangeListener { _, _ ->
