@@ -84,13 +84,43 @@ class MainActivity : AppCompatActivity() {
         val button3 = findViewById<Button>(R.id.button3)
         val button4 = findViewById<Button>(R.id.button4)
 
+        val spinner = findViewById<Spinner>(R.id.spinner)
+        val spinner2 = findViewById<Spinner>(R.id.spinner2)
+
         fun check(){
-            if (!checkbox.isChecked) {
+            if (!checkbox.isChecked &&
+                !checkbox2.isChecked &&
+                !checkbox3.isChecked &&
+                !checkbox4.isChecked &&
+                !checkbox5.isChecked &&
+                !checkbox6.isChecked &&
+                !checkbox7.isChecked &&
+                !checkbox8.isChecked &&
+                !checkbox9.isChecked &&
+                !checkbox10.isChecked &&
+                !checkbox11.isChecked &&
+                !checkbox12.isChecked &&
+                !checkbox13.isChecked &&
+                !checkbox14.isChecked &&
+                !checkbox15.isChecked &&
+                !checkbox16.isChecked &&
+                spinner.selectedItemPosition == 0 &&
+                spinner2.selectedItemPosition == 0) {
                 edittext.setText("https://scryfall.com/random?q=")
             }
         }
 
-        val spinner = findViewById<Spinner>(R.id.spinner)
+        fun checkColor(){
+            if (
+                !checkbox8.isChecked &&
+                !checkbox9.isChecked &&
+                !checkbox10.isChecked &&
+                !checkbox11.isChecked &&
+                !checkbox12.isChecked &&
+                !checkbox13.isChecked) {
+                edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+            }
+        }
 
         val spinnerItems = arrayOf("指定しない", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17以上" )
 
@@ -120,6 +150,7 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
                 edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                check()
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -127,8 +158,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
         spinner.isFocusable = false
-
-        val spinner2 = findViewById<Spinner>(R.id.spinner2)
 
         val spinnerItems2 = arrayOf("指定しない", "standard", "future", "historic", "gladiator", "pioneer", "modern", "legacy", "pauper", "vintage", "penny", "commander", "brawl", "duel", "oldschool", "premodern")
 
@@ -155,6 +184,7 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
                 edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                check()
             }
             
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -180,6 +210,7 @@ class MainActivity : AppCompatActivity() {
             } else {
                 type2 = ""
                 edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                check()
             }
         }
         checkbox3.setOnCheckedChangeListener { _, _ ->
@@ -189,6 +220,7 @@ class MainActivity : AppCompatActivity() {
             } else {
                 type3 = ""
                 edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                check()
             }
         }
         checkbox4.setOnCheckedChangeListener { _, _ ->
@@ -198,6 +230,7 @@ class MainActivity : AppCompatActivity() {
             } else {
                 type4 = ""
                 edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                check()
             }
         }
         checkbox5.setOnCheckedChangeListener { _, _ ->
@@ -207,6 +240,7 @@ class MainActivity : AppCompatActivity() {
             } else {
                 type5 = ""
                 edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                check()
             }
         }
         checkbox6.setOnCheckedChangeListener { _, _ ->
@@ -216,6 +250,7 @@ class MainActivity : AppCompatActivity() {
             } else {
                 type6 = ""
                 edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                check()
             }
         }
         checkbox7.setOnCheckedChangeListener { _, _ ->
@@ -225,14 +260,36 @@ class MainActivity : AppCompatActivity() {
             } else {
                 type7 = ""
                 edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                check()
             }
         }
 
         radigroup.setOnCheckedChangeListener { _, _ ->
             when {
-                radiobutton.isChecked -> edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
-                radiobutton2.isChecked -> edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)(Color=$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
-                radiobutton3.isChecked -> edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)(Color<=$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                radiobutton.isChecked -> {
+                    checkbox8.isChecked = false
+                    checkbox9.isChecked = false
+                    checkbox10.isChecked = false
+                    checkbox11.isChecked = false
+                    checkbox12.isChecked = false
+                    checkbox13.isChecked = false
+                }
+                radiobutton2.isChecked -> {
+                    checkbox8.isChecked = false
+                    checkbox9.isChecked = false
+                    checkbox10.isChecked = false
+                    checkbox11.isChecked = false
+                    checkbox12.isChecked = false
+                    checkbox13.isChecked = false
+                }
+                radiobutton3.isChecked -> {
+                    checkbox8.isChecked = false
+                    checkbox9.isChecked = false
+                    checkbox10.isChecked = false
+                    checkbox11.isChecked = false
+                    checkbox12.isChecked = false
+                    checkbox13.isChecked = false
+                }
             }
         }
 
@@ -244,6 +301,8 @@ class MainActivity : AppCompatActivity() {
                 } else {
                     color = ""
                     edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    checkColor()
+                    check()
                 }
                 radiobutton2.isChecked -> if (checkbox8.isChecked) {
                     color = "W"
@@ -251,6 +310,8 @@ class MainActivity : AppCompatActivity() {
                 } else {
                     color = ""
                     edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)(Color=$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    checkColor()
+                    check()
                 }
                 radiobutton3.isChecked -> if (checkbox8.isChecked) {
                     color = "W"
@@ -258,6 +319,8 @@ class MainActivity : AppCompatActivity() {
                 } else {
                     color = ""
                     edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)(Color<=$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    checkColor()
+                    check()
                 }
                 else -> if (checkbox8.isChecked) {
                     color = "color=W or "
@@ -265,6 +328,8 @@ class MainActivity : AppCompatActivity() {
                 } else {
                     color = ""
                     edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    checkColor()
+                    check()
                 }
             }
         }
@@ -277,6 +342,8 @@ class MainActivity : AppCompatActivity() {
                 } else {
                     color2 = ""
                     edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    checkColor()
+                    check()
                 }
                 radiobutton2.isChecked -> if (checkbox9.isChecked) {
                     color2 = "U"
@@ -284,6 +351,8 @@ class MainActivity : AppCompatActivity() {
                 } else {
                     color2 = ""
                     edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)(Color=$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    checkColor()
+                    check()
                 }
                 radiobutton3.isChecked -> if (checkbox9.isChecked) {
                     color2 = "U"
@@ -291,6 +360,8 @@ class MainActivity : AppCompatActivity() {
                 } else {
                     color2 = ""
                     edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)(Color<=$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    checkColor()
+                    check()
                 }
                 else -> if (checkbox9.isChecked) {
                     color2 = "color=U or "
@@ -298,6 +369,8 @@ class MainActivity : AppCompatActivity() {
                 } else {
                     color2 = ""
                     edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    checkColor()
+                    check()
                 }
             }
         }
@@ -310,6 +383,8 @@ class MainActivity : AppCompatActivity() {
                 } else {
                     color3 = ""
                     edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    checkColor()
+                    check()
                 }
                 radiobutton2.isChecked -> if (checkbox10.isChecked) {
                     color3 = "B"
@@ -317,6 +392,8 @@ class MainActivity : AppCompatActivity() {
                 } else {
                     color3 = ""
                     edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)(Color=$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    checkColor()
+                    check()
                 }
                 radiobutton3.isChecked -> if (checkbox10.isChecked) {
                     color3 = "B"
@@ -324,6 +401,8 @@ class MainActivity : AppCompatActivity() {
                 } else {
                     color3 = ""
                     edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)(Color<=$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    checkColor()
+                    check()
                 }
                 else -> if (checkbox10.isChecked) {
                     color3 = "color=B or "
@@ -331,6 +410,8 @@ class MainActivity : AppCompatActivity() {
                 } else {
                     color3 = ""
                     edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    checkColor()
+                    check()
                 }
             }
         }
@@ -343,6 +424,8 @@ class MainActivity : AppCompatActivity() {
                 } else {
                     color4 = ""
                     edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    checkColor()
+                    check()
                 }
                 radiobutton2.isChecked -> if (checkbox11.isChecked) {
                     color4 = "R"
@@ -350,6 +433,8 @@ class MainActivity : AppCompatActivity() {
                 } else {
                     color4 = ""
                     edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)(Color=$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    checkColor()
+                    check()
                 }
                 radiobutton3.isChecked -> if (checkbox11.isChecked) {
                     color4 = "R"
@@ -357,6 +442,8 @@ class MainActivity : AppCompatActivity() {
                 } else {
                     color4 = ""
                     edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)(Color<=$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    checkColor()
+                    check()
                 }
                 else -> if (checkbox11.isChecked) {
                     color4 = "color=R or "
@@ -364,6 +451,8 @@ class MainActivity : AppCompatActivity() {
                 } else {
                     color4 = ""
                     edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    checkColor()
+                    check()
                 }
             }
         }
@@ -376,6 +465,8 @@ class MainActivity : AppCompatActivity() {
                 } else {
                     color5 = ""
                     edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    checkColor()
+                    check()
                 }
                 radiobutton2.isChecked -> if (checkbox12.isChecked) {
                     color5 = "G"
@@ -383,6 +474,8 @@ class MainActivity : AppCompatActivity() {
                 } else {
                     color5 = ""
                     edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)(Color=$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    checkColor()
+                    check()
                 }
                 radiobutton3.isChecked -> if (checkbox12.isChecked) {
                     color5 = "G"
@@ -390,6 +483,8 @@ class MainActivity : AppCompatActivity() {
                 } else {
                     color5 = ""
                     edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)(Color<=$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    checkColor()
+                    check()
                 }
                 else -> if (checkbox12.isChecked) {
                     color5 = "color=G or "
@@ -397,6 +492,8 @@ class MainActivity : AppCompatActivity() {
                 } else {
                     color5 = ""
                     edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    checkColor()
+                    check()
                 }
             }
         }
@@ -409,6 +506,8 @@ class MainActivity : AppCompatActivity() {
                 } else {
                     color6 = ""
                     edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    checkColor()
+                    check()
                 }
                 radiobutton2.isChecked -> if (checkbox13.isChecked) {
                     color6 = "C"
@@ -416,6 +515,8 @@ class MainActivity : AppCompatActivity() {
                 } else {
                     color6 = ""
                     edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)(Color=$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    checkColor()
+                    check()
                 }
                 radiobutton3.isChecked -> if (checkbox13.isChecked) {
                     color6 = "C"
@@ -423,6 +524,8 @@ class MainActivity : AppCompatActivity() {
                 } else {
                     color6 = ""
                     edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)(Color<=$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    checkColor()
+                    check()
                 }
                 else -> if (checkbox13.isChecked) {
                     color6 = "color=C or "
@@ -430,6 +533,8 @@ class MainActivity : AppCompatActivity() {
                 } else {
                     color6 = ""
                     edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    checkColor()
+                    check()
                 }
             }
         }
@@ -441,6 +546,7 @@ class MainActivity : AppCompatActivity() {
             } else {
                 funny= ""
                 edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                check()
             }
         }
 
@@ -451,6 +557,7 @@ class MainActivity : AppCompatActivity() {
             } else {
                 firstprint = ""
                 edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                check()
             }
         }
 
@@ -461,6 +568,7 @@ class MainActivity : AppCompatActivity() {
             } else {
                 type8 = ""
                 edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                check()
             }
         }
 
