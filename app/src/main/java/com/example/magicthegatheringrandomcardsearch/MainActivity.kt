@@ -44,6 +44,7 @@ class MainActivity : AppCompatActivity() {
 
         webView.settings.builtInZoomControls = true
         webView.settings.javaScriptEnabled = true
+        webView.settings.useWideViewPort = true
         webView.loadUrl("https://scryfall.com/")
 
         webView.webViewClient = object : WebViewClient() {
