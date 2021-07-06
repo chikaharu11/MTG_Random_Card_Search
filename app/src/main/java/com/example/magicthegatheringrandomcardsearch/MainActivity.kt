@@ -23,6 +23,7 @@ class MainActivity : AppCompatActivity() {
     private var type8 = ""
     private var cost = ""
     private var format = ""
+    private var core = ""
     private var color = ""
     private var color2 = ""
     private var color3 = ""
@@ -92,6 +93,7 @@ class MainActivity : AppCompatActivity() {
 
         val spinner = findViewById<Spinner>(R.id.spinner)
         val spinner2 = findViewById<Spinner>(R.id.spinner2)
+        val spinner3 = findViewById<Spinner>(R.id.spinner3)
 
         fun check(){
             if (!checkbox.isChecked &&
@@ -235,88 +237,88 @@ class MainActivity : AppCompatActivity() {
                         "format:$format2 "
                     }
                     16 -> {
-                        "block:grn"
+                        "block:grn "
                     }
                     17 -> {
-                        "block:xln"
+                        "block:xln "
                     }
                     18 -> {
-                        "block:akh"
+                        "block:akh "
                     }
                     19 -> {
-                        "block:kld"
+                        "block:kld "
                     }
                     20 -> {
-                        "block:soi"
+                        "block:soi "
                     }
                     21 -> {
-                        "block:bfz"
+                        "block:bfz "
                     }
                     22 -> {
-                        "block:ktk"
+                        "block:ktk "
                     }
                     23 -> {
-                        "block:ths"
+                        "block:ths "
                     }
                     24 -> {
-                        "block:rtr"
+                        "block:rtr "
                     }
                     25 -> {
-                        "block:isd"
+                        "block:isd "
                     }
                     26 -> {
-                        "block:som"
+                        "block:som "
                     }
                     27 -> {
-                        "block:zen"
+                        "block:zen "
                     }
                     28 -> {
-                        "block:ala"
+                        "block:ala "
                     }
                     29 -> {
-                        "block:shm"
+                        "block:shm "
                     }
                     30 -> {
-                        "block:lrw"
+                        "block:lrw "
                     }
                     31 -> {
-                        "block:tsp"
+                        "block:tsp "
                     }
                     32 -> {
-                        "block:rav"
+                        "block:rav "
                     }
                     33 -> {
-                        "block:chk"
+                        "block:chk "
                     }
                     34 -> {
-                        "block:mrd"
+                        "block:mrd "
                     }
                     35 -> {
-                        "block:ons"
+                        "block:ons "
                     }
                     36 -> {
-                        "block:ody"
+                        "block:ody "
                     }
                     37 -> {
-                        "block:inv"
+                        "block:inv "
                     }
                     38 -> {
-                        "block:mmq"
+                        "block:mmq "
                     }
                     39 -> {
-                        "block:usg"
+                        "block:usg "
                     }
                     40 -> {
-                        "block:tmp"
+                        "block:tmp "
                     }
                     41 -> {
-                        "block:mir"
+                        "block:mir "
                     }
                     42 -> {
-                        "block:ice"
+                        "block:ice "
                     }
                     43 -> {
-                        "(set:hml or set:fem or set:drk or set:leg or set:atq or set:arn)"
+                        "(set:hml or set:fem or set:drk or set:leg or set:atq or set:arn) "
                     }
                     else -> {
                         ""
@@ -331,6 +333,43 @@ class MainActivity : AppCompatActivity() {
             }
         }
         spinner2.isFocusable = false
+
+        val spinnerItems3 = arrayOf("指定しない", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17以上" )
+
+        val adapter3 = ArrayAdapter(this, R.layout.spinner_item, spinnerItems3)
+
+        adapter3.setDropDownViewResource(R.layout.spinner_dropdown_item)
+
+        spinner3.adapter = adapter
+
+        spinner3.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                if (!spinner3.isFocusable) {
+                    spinner3.isFocusable = true
+                    return
+                }
+                val core2 = parent?.selectedItem as String
+                core = when(position) {
+                    0 -> {
+                        ""
+                    }
+                    18 -> {
+                        " cmc>=$core2 "
+                    }
+                    else -> {
+                        " cmc=$core2 "
+                    }
+                }
+                edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$core$funny$firstprint")
+                check()
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+        }
+        spinner3.isFocusable = false
 
         checkbox.setOnCheckedChangeListener { _, _ ->
             if (checkbox.isChecked) {
