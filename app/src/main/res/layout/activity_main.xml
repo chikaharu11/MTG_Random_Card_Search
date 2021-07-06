@@ -304,8 +304,8 @@
             android:inputType="text"
             android:text="@string/name"
             app:layout_constraintBottom_toBottomOf="@+id/imageView"
-            app:layout_constraintEnd_toEndOf="@+id/imageView"
-            app:layout_constraintStart_toStartOf="@+id/imageView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             tools:ignore="LabelFor,MissingConstraints" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

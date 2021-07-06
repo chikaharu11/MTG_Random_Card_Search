@@ -86,6 +86,10 @@ class MainActivity : AppCompatActivity() {
         val button3 = findViewById<Button>(R.id.button3)
         val button4 = findViewById<Button>(R.id.button4)
 
+        val textview = findViewById<TextView>(R.id.textView)
+        val textview2 = findViewById<TextView>(R.id.textView2)
+
+
         val spinner = findViewById<Spinner>(R.id.spinner)
         val spinner2 = findViewById<Spinner>(R.id.spinner2)
 
@@ -162,7 +166,10 @@ class MainActivity : AppCompatActivity() {
         }
         spinner.isFocusable = false
 
-        val spinnerItems2 = arrayOf("指定しない", "standard", "future", "historic", "gladiator", "pioneer", "modern", "legacy", "pauper", "vintage", "penny", "commander", "brawl", "duel", "oldschool", "premodern")
+        val spinnerItems2 = arrayOf("指定しない                        ", "Standard", "Future", "Historic", "Gladiator", "Pioneer", "Modern", "Legacy", "Pauper", "Vintage", "Penny", "Commander",
+            "Brawl", "Duel", "Oldschool", "Premodern", "Guilds of Ravnica", "Ixalan", "Amonkhet", "Kaladesh", "Shadows over Innistrad", "Battle for Zendikar", "Khans of Tarkir", "Theros",
+            "Return to Ravnica", "Innistrad", "Scars of Mirrodin", "Zendikar", "Alara", "Shadowmoor", "Lorwyn", "Time Spiral", "Ravnica", "Kamigawa", "Mirrodin", "Onslaught", "Odyssey",
+            "Invasion", "Masques", "Urza", "Tempest", "Mirage", "Ice Age")
 
         val adapter2 = ArrayAdapter(this, android.R.layout.simple_spinner_item, spinnerItems2)
 
@@ -182,8 +189,134 @@ class MainActivity : AppCompatActivity() {
                     0 -> {
                         ""
                     }
-                    else -> {
+                    1 -> {
                         "format:$format2 "
+                    }
+                    2 -> {
+                        "format:$format2 "
+                    }
+                    3 -> {
+                        "format:$format2 "
+                    }
+                    4 -> {
+                        "format:$format2 "
+                    }
+                    5 -> {
+                        "format:$format2 "
+                    }
+                    6 -> {
+                        "format:$format2 "
+                    }
+                    7 -> {
+                        "format:$format2 "
+                    }
+                    8 -> {
+                        "format:$format2 "
+                    }
+                    9 -> {
+                        "format:$format2 "
+                    }
+                    10 -> {
+                        "format:$format2 "
+                    }
+                    11 -> {
+                        "format:$format2 "
+                    }
+                    12 -> {
+                        "format:$format2 "
+                    }
+                    13 -> {
+                        "format:$format2 "
+                    }
+                    14 -> {
+                        "format:$format2 "
+                    }
+                    15 -> {
+                        "format:$format2 "
+                    }
+                    16 -> {
+                        "block:grn"
+                    }
+                    17 -> {
+                        "block:xln"
+                    }
+                    18 -> {
+                        "block:akh"
+                    }
+                    19 -> {
+                        "block:kld"
+                    }
+                    20 -> {
+                        "block:soi"
+                    }
+                    21 -> {
+                        "block:bfz"
+                    }
+                    22 -> {
+                        "block:ktk"
+                    }
+                    23 -> {
+                        "block:ths"
+                    }
+                    24 -> {
+                        "block:rtr"
+                    }
+                    25 -> {
+                        "block:isd"
+                    }
+                    26 -> {
+                        "block:som"
+                    }
+                    27 -> {
+                        "block:zen"
+                    }
+                    28 -> {
+                        "block:ala"
+                    }
+                    29 -> {
+                        "block:shm"
+                    }
+                    30 -> {
+                        "block:lrw"
+                    }
+                    31 -> {
+                        "block:tsp"
+                    }
+                    32 -> {
+                        "block:rav"
+                    }
+                    33 -> {
+                        "block:chk"
+                    }
+                    34 -> {
+                        "block:mrd"
+                    }
+                    35 -> {
+                        "block:ons"
+                    }
+                    36 -> {
+                        "block:ody"
+                    }
+                    37 -> {
+                        "block:inv"
+                    }
+                    38 -> {
+                        "block:mmq"
+                    }
+                    39 -> {
+                        "block:usg"
+                    }
+                    40 -> {
+                        "block:tmp"
+                    }
+                    41 -> {
+                        "block:mir"
+                    }
+                    42 -> {
+                        "block:ice"
+                    }
+                    else -> {
+                        ""
                     }
                 }
                 edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
@@ -747,6 +880,12 @@ class MainActivity : AppCompatActivity() {
             layoutView.visibility = View.INVISIBLE
             webView.visibility = View.VISIBLE
             webView.loadUrl("https://scryfall.com/random?q=type:vanguard")
+        }
+        textview.setOnClickListener {
+            spinner.performClick()
+        }
+        textview2.setOnClickListener {
+            spinner2.performClick()
         }
     }
 }

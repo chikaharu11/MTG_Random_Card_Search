@@ -22,7 +22,7 @@
     <string name="checkbox14">アン・シリーズを除く</string>
     <string name="checkbox15">初収録時のカード画像</string>
     <string name="textview">マナコスト</string>
-    <string name="textview2">フォーマット</string>
+    <string name="textview2">フォーマット or ブロック</string>
     <string name="button4">ヴァンガード</string>
     <string name="todo">TODO</string>
     <string name="radiobutton">〜のどれか一色</string>
