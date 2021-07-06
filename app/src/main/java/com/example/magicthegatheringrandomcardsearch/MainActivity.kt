@@ -131,9 +131,9 @@ class MainActivity : AppCompatActivity() {
 
         val spinnerItems = arrayOf("指定しない", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17以上" )
 
-        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, spinnerItems)
+        val adapter = ArrayAdapter(this, R.layout.spinner_item, spinnerItems)
 
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item)
 
         spinner.adapter = adapter
 
@@ -169,11 +169,11 @@ class MainActivity : AppCompatActivity() {
         val spinnerItems2 = arrayOf("指定しない                        ", "Standard", "Future", "Historic", "Gladiator", "Pioneer", "Modern", "Legacy", "Pauper", "Vintage", "Penny", "Commander",
             "Brawl", "Duel", "Oldschool", "Premodern", "Guilds of Ravnica", "Ixalan", "Amonkhet", "Kaladesh", "Shadows over Innistrad", "Battle for Zendikar", "Khans of Tarkir", "Theros",
             "Return to Ravnica", "Innistrad", "Scars of Mirrodin", "Zendikar", "Alara", "Shadowmoor", "Lorwyn", "Time Spiral", "Ravnica", "Kamigawa", "Mirrodin", "Onslaught", "Odyssey",
-            "Invasion", "Masques", "Urza", "Tempest", "Mirage", "Ice Age")
+            "Invasion", "Masques", "Urza", "Tempest", "Mirage", "Ice Age", "Old Expansion")
 
-        val adapter2 = ArrayAdapter(this, android.R.layout.simple_spinner_item, spinnerItems2)
+        val adapter2 = ArrayAdapter(this, R.layout.spinner_item, spinnerItems2)
 
-        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        adapter2.setDropDownViewResource(R.layout.spinner_dropdown_item)
 
         spinner2.adapter = adapter2
 
@@ -314,6 +314,9 @@ class MainActivity : AppCompatActivity() {
                     }
                     42 -> {
                         "block:ice"
+                    }
+                    43 -> {
+                        "(set:hml or set:fem or set:drk or set:leg or set:atq or set:arn)"
                     }
                     else -> {
                         ""
