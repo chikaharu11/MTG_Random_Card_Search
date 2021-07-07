@@ -113,7 +113,8 @@ class MainActivity : AppCompatActivity() {
                 !checkbox15.isChecked &&
                 !checkbox16.isChecked &&
                 spinner.selectedItemPosition == 0 &&
-                spinner2.selectedItemPosition == 0) {
+                spinner2.selectedItemPosition == 0 &&
+                spinner3.selectedItemPosition == 0) {
                 edittext.setText("https://scryfall.com/random?q=")
             }
         }
@@ -237,85 +238,85 @@ class MainActivity : AppCompatActivity() {
                         "format:$format2 "
                     }
                     16 -> {
-                        "block:grn "
+                        "block:grn or "
                     }
                     17 -> {
-                        "block:xln "
+                        "block:xln or "
                     }
                     18 -> {
-                        "block:akh "
+                        "block:akh or "
                     }
                     19 -> {
-                        "block:kld "
+                        "block:kld or "
                     }
                     20 -> {
-                        "block:soi "
+                        "block:soi or "
                     }
                     21 -> {
-                        "block:bfz "
+                        "block:bfz or "
                     }
                     22 -> {
-                        "block:ktk "
+                        "block:ktk or "
                     }
                     23 -> {
-                        "block:ths "
+                        "block:ths or "
                     }
                     24 -> {
-                        "block:rtr "
+                        "block:rtr or "
                     }
                     25 -> {
-                        "block:isd "
+                        "block:isd or "
                     }
                     26 -> {
-                        "block:som "
+                        "block:som or "
                     }
                     27 -> {
-                        "block:zen "
+                        "block:zen or "
                     }
                     28 -> {
-                        "block:ala "
+                        "block:ala or "
                     }
                     29 -> {
-                        "block:shm "
+                        "block:shm or "
                     }
                     30 -> {
-                        "block:lrw "
+                        "block:lrw or "
                     }
                     31 -> {
-                        "block:tsp "
+                        "block:tsp or "
                     }
                     32 -> {
-                        "block:rav "
+                        "block:rav or "
                     }
                     33 -> {
-                        "block:chk "
+                        "block:chk or "
                     }
                     34 -> {
-                        "block:mrd "
+                        "block:mrd or "
                     }
                     35 -> {
-                        "block:ons "
+                        "block:ons or "
                     }
                     36 -> {
-                        "block:ody "
+                        "block:ody or "
                     }
                     37 -> {
-                        "block:inv "
+                        "block:inv or "
                     }
                     38 -> {
-                        "block:mmq "
+                        "block:mmq or "
                     }
                     39 -> {
-                        "block:usg "
+                        "block:usg or "
                     }
                     40 -> {
-                        "block:tmp "
+                        "block:tmp or "
                     }
                     41 -> {
-                        "block:mir "
+                        "block:mir or "
                     }
                     42 -> {
-                        "block:ice "
+                        "block:ice or "
                     }
                     43 -> {
                         "set:hml or set:fem or set:drk or set:leg or set:atq or set:arn or "
@@ -976,6 +977,7 @@ class MainActivity : AppCompatActivity() {
                 radigroup.clearCheck()
                 spinner.setSelection(0)
                 spinner2.setSelection(0)
+                spinner3.setSelection(0)
                 edittext.setText("https://scryfall.com/random?q=")
             }
         }
