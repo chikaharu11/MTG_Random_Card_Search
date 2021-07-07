@@ -314,6 +314,15 @@
             app:layout_constraintStart_toStartOf="parent"
             tools:ignore="LabelFor,MissingConstraints" />
 
+        <Spinner
+            android:id="@+id/spinner3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@id/checkBox14"
+            app:layout_constraintStart_toStartOf="@id/checkBox15"
+            app:layout_constraintTop_toBottomOf="@id/textView3"
+            tools:ignore="MissingConstraints" />
+
         <TextView
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
@@ -325,14 +334,6 @@
             app:layout_constraintBottom_toTopOf="@id/spinner3"
             app:layout_constraintStart_toStartOf="@+id/checkBox15"
             app:layout_constraintTop_toBottomOf="@+id/spinner2" />
-
-        <Spinner
-            android:id="@+id/spinner3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@id/checkBox14"
-            app:layout_constraintStart_toStartOf="@id/checkBox15"
-            app:layout_constraintTop_toBottomOf="@id/textView3" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -127,7 +127,7 @@ class MainActivity : AppCompatActivity() {
                 !checkbox12.isChecked &&
                 !checkbox13.isChecked) {
                     colorsign = ""
-                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
             }
         }
 
@@ -158,7 +158,7 @@ class MainActivity : AppCompatActivity() {
                         " cmc=$cost2 "
                     }
                 }
-                edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                 check()
             }
 
@@ -318,13 +318,13 @@ class MainActivity : AppCompatActivity() {
                         "block:ice "
                     }
                     43 -> {
-                        "(set:hml or set:fem or set:drk or set:leg or set:atq or set:arn) "
+                        "set:hml or set:fem or set:drk or set:leg or set:atq or set:arn or "
                     }
                     else -> {
                         ""
                     }
                 }
-                edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                 check()
             }
             
@@ -334,13 +334,36 @@ class MainActivity : AppCompatActivity() {
         }
         spinner2.isFocusable = false
 
-        val spinnerItems3 = arrayOf("指定しない", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17以上" )
+        val spinnerItems3 = arrayOf(
+        "含めない",
+        "Core Set 2021 (M21)",
+        "Core Set 2020 (M20)",
+        "Core Set 2019 (M19)",
+        "Magic Origins (ORI)",
+        "Magic 2015 (M15)",
+        "Magic 2014 (M14)",
+        "Magic 2013 (M13)",
+        "Magic 2012 (M12)",
+        "Magic 2011 (M11)",
+        "Magic 2010 (M10)",
+        "Tenth Edition (10E)",
+        "Ninth Edition (9ED)",
+        "Eighth Edition (8ED)",
+        "Seventh Edition (7ED)",
+        "Classic Sixth Edition (6ED)",
+        "Fifth Edition (5ED)",
+        "Fourth Edition (4ED)",
+        "Revised Edition (3ED)",
+        "Unlimited Edition (2ED)",
+        "Limited Edition Beta (LEB)",
+        "Limited Edition Alpha (LEA)"
+        )
 
         val adapter3 = ArrayAdapter(this, R.layout.spinner_item, spinnerItems3)
 
         adapter3.setDropDownViewResource(R.layout.spinner_dropdown_item)
 
-        spinner3.adapter = adapter
+        spinner3.adapter = adapter3
 
         spinner3.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
 
@@ -349,19 +372,78 @@ class MainActivity : AppCompatActivity() {
                     spinner3.isFocusable = true
                     return
                 }
-                val core2 = parent?.selectedItem as String
                 core = when(position) {
                     0 -> {
                         ""
                     }
+                    1 -> {
+                        "set:m21"
+                    }
+                    2 -> {
+                        "set:m20"
+                    }
+                    3 -> {
+                        "set:m19"
+                    }
+                    4 -> {
+                        "set:ori"
+                    }
+                    5 -> {
+                        "set:m15"
+                    }
+                    6 -> {
+                        "set:m14"
+                    }
+                    7 -> {
+                        "set:m13"
+                    }
+                    8 -> {
+                        "set:m12"
+                    }
+                    9 -> {
+                        "set:m11"
+                    }
+                    10 -> {
+                        "set:m10"
+                    }
+                    11 -> {
+                        "set:10e"
+                    }
+                    12 -> {
+                        "set:9ed"
+                    }
+                    13 -> {
+                        "set:8ed"
+                    }
+                    14 -> {
+                        "set:7ed"
+                    }
+                    15 -> {
+                        "set:6ed"
+                    }
+                    16 -> {
+                        "set:5ed"
+                    }
+                    17 -> {
+                        "set:4ed"
+                    }
                     18 -> {
-                        " cmc>=$core2 "
+                        "set:3ed"
+                    }
+                    19 -> {
+                        "set:2ed"
+                    }
+                    20 -> {
+                        "set:leb"
+                    }
+                    21 -> {
+                        "set:lea"
                     }
                     else -> {
-                        " cmc=$core2 "
+                        ""
                     }
                 }
-                edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$core$funny$firstprint")
+                edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                 check()
             }
 
@@ -374,70 +456,70 @@ class MainActivity : AppCompatActivity() {
         checkbox.setOnCheckedChangeListener { _, _ ->
             if (checkbox.isChecked) {
                 type = "type:creature or "
-                edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
             } else {
                 type = ""
-                edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                 check()
             }
         }
         checkbox2.setOnCheckedChangeListener { _, _ ->
             if (checkbox2.isChecked) {
                 type2 = "type:planeswalker or "
-                edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
             } else {
                 type2 = ""
-                edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                 check()
             }
         }
         checkbox3.setOnCheckedChangeListener { _, _ ->
             if (checkbox3.isChecked) {
                 type3 = "type:Artifact or "
-                edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
             } else {
                 type3 = ""
-                edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                 check()
             }
         }
         checkbox4.setOnCheckedChangeListener { _, _ ->
             if (checkbox4.isChecked) {
                 type4 = "type:Instant or "
-                edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
             } else {
                 type4 = ""
-                edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                 check()
             }
         }
         checkbox5.setOnCheckedChangeListener { _, _ ->
             if (checkbox5.isChecked) {
                 type5 = "type:Sorcery or "
-                edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
             } else {
                 type5 = ""
-                edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                 check()
             }
         }
         checkbox6.setOnCheckedChangeListener { _, _ ->
             if (checkbox6.isChecked) {
                 type6 = "type:Enchantment or "
-                edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
             } else {
                 type6 = ""
-                edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                 check()
             }
         }
         checkbox7.setOnCheckedChangeListener { _, _ ->
             if (checkbox7.isChecked) {
                 type7 = "type:Land or "
-                edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
             } else {
                 type7 = ""
-                edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                 check()
             }
         }
@@ -475,10 +557,10 @@ class MainActivity : AppCompatActivity() {
             when {
                 radiobutton.isChecked -> if (checkbox8.isChecked) {
                     color = "color=W or "
-                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                 } else {
                     color = ""
-                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                     checkColor()
                     check()
                 }
@@ -487,17 +569,17 @@ class MainActivity : AppCompatActivity() {
                     color6 = ""
                     color = "W"
                     colorsign = "Color="
-                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                     checkColor()
                     check()
                 } else if (checkbox8.isChecked) {
                     color = "W"
                     colorsign = "Color="
-                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                 } else {
                     color = ""
                     colorsign = "Color="
-                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                     checkColor()
                     check()
             }
@@ -506,26 +588,26 @@ class MainActivity : AppCompatActivity() {
                     color6 = ""
                     color = "W"
                     colorsign = "Color<="
-                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                     checkColor()
                     check()
                 } else if (checkbox8.isChecked) {
                     color = "W"
                     colorsign = "Color<="
-                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                 } else {
                     color = ""
                     colorsign = "Color<="
-                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                     checkColor()
                     check()
                 }
                 else -> if (checkbox8.isChecked) {
                     color = "color=W or "
-                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                 } else {
                     color = ""
-                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                     checkColor()
                     check()
                 }
@@ -536,10 +618,10 @@ class MainActivity : AppCompatActivity() {
             when {
                 radiobutton.isChecked -> if (checkbox9.isChecked) {
                     color2 = "color=U or "
-                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                 } else {
                     color2 = ""
-                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                     checkColor()
                     check()
                 }
@@ -548,17 +630,17 @@ class MainActivity : AppCompatActivity() {
                     color6 = ""
                     color2 = "U"
                     colorsign = "Color="
-                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                     checkColor()
                     check()
                 } else if (checkbox9.isChecked) {
                     color2 = "U"
                     colorsign = "Color="
-                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                 } else {
                     color2 = ""
                     colorsign = "Color="
-                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                     checkColor()
                     check()
                 }
@@ -567,26 +649,26 @@ class MainActivity : AppCompatActivity() {
                     color6 = ""
                     color2 = "U"
                     colorsign = "Color<="
-                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                     checkColor()
                     check()
                 } else if (checkbox9.isChecked) {
                     color2 = "U"
                     colorsign = "Color<="
-                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                 } else {
                     color2 = ""
                     colorsign = "Color<="
-                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                     checkColor()
                     check()
                 }
                 else -> if (checkbox9.isChecked) {
                     color2 = "color=U or "
-                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                 } else {
                     color2 = ""
-                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                     checkColor()
                     check()
                 }
@@ -597,10 +679,10 @@ class MainActivity : AppCompatActivity() {
             when {
                 radiobutton.isChecked -> if (checkbox10.isChecked) {
                     color3 = "color=B or "
-                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                 } else {
                     color3 = ""
-                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                     checkColor()
                     check()
                 }
@@ -609,17 +691,17 @@ class MainActivity : AppCompatActivity() {
                     color6 = ""
                     color3 = "B"
                     colorsign = "Color="
-                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                     checkColor()
                     check()
                 } else if (checkbox10.isChecked) {
                     color3 = "B"
                     colorsign = "Color="
-                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                 } else {
                     color3 = ""
                     colorsign = "Color="
-                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                     checkColor()
                     check()
                 }
@@ -628,26 +710,26 @@ class MainActivity : AppCompatActivity() {
                     color6 = ""
                     color3 = "B"
                     colorsign = "Color<="
-                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                     checkColor()
                     check()
                 } else if (checkbox10.isChecked) {
                     color3 = "B"
                     colorsign = "Color<="
-                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                 } else {
                     color3 = ""
                     colorsign = "Color<="
-                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                     checkColor()
                     check()
                 }
                 else -> if (checkbox10.isChecked) {
                     color3 = "color=B or "
-                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                 } else {
                     color3 = ""
-                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                     checkColor()
                     check()
                 }
@@ -658,10 +740,10 @@ class MainActivity : AppCompatActivity() {
             when {
                 radiobutton.isChecked -> if (checkbox11.isChecked) {
                     color4 = "color=R or "
-                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                 } else {
                     color4 = ""
-                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                     checkColor()
                     check()
                 }
@@ -670,17 +752,17 @@ class MainActivity : AppCompatActivity() {
                     color6 = ""
                     color4 = "R"
                     colorsign = "Color="
-                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                     checkColor()
                     check()
                 } else if (checkbox11.isChecked) {
                     color4 = "R"
                     colorsign = "Color="
-                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                 } else {
                     color4 = ""
                     colorsign = "Color="
-                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                     checkColor()
                     check()
                 }
@@ -689,26 +771,26 @@ class MainActivity : AppCompatActivity() {
                     color6 = ""
                     color4 = "R"
                     colorsign = "Color<="
-                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                     checkColor()
                     check()
                 } else if (checkbox11.isChecked) {
                     color4 = "R"
                     colorsign = "Color<="
-                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                 } else {
                     color4 = ""
                     colorsign = "Color<="
-                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                     checkColor()
                     check()
                 }
                 else -> if (checkbox11.isChecked) {
                     color4 = "color=R or "
-                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                 } else {
                     color4 = ""
-                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                     checkColor()
                     check()
                 }
@@ -719,10 +801,10 @@ class MainActivity : AppCompatActivity() {
             when {
                 radiobutton.isChecked -> if (checkbox12.isChecked) {
                     color5 = "color=G or "
-                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                 } else {
                     color5 = ""
-                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                     checkColor()
                     check()
                 }
@@ -731,17 +813,17 @@ class MainActivity : AppCompatActivity() {
                     color6 = ""
                     color5 = "G"
                     colorsign = "Color="
-                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                     checkColor()
                     check()
                 } else if (checkbox12.isChecked) {
                     color5 = "G"
                     colorsign = "Color="
-                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                 } else {
                     color5 = ""
                     colorsign = "Color="
-                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                     checkColor()
                     check()
                 }
@@ -750,26 +832,26 @@ class MainActivity : AppCompatActivity() {
                     color6 = ""
                     color5 = "G"
                     colorsign = "Color<="
-                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                     checkColor()
                     check()
                 } else if (checkbox12.isChecked) {
                     color5 = "G"
                     colorsign = "Color<="
-                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                 } else {
                     color5 = ""
                     colorsign = "Color<="
-                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                     checkColor()
                     check()
                 }
                 else -> if (checkbox12.isChecked) {
                     color5 = "color=G or "
-                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                 } else {
                     color5 = ""
-                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                     checkColor()
                     check()
                 }
@@ -780,10 +862,10 @@ class MainActivity : AppCompatActivity() {
             when {
                 radiobutton.isChecked -> if (checkbox13.isChecked) {
                     color6 = "color=C or "
-                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                 } else {
                     color6 = ""
-                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                     checkColor()
                     check()
                 }
@@ -800,10 +882,10 @@ class MainActivity : AppCompatActivity() {
                     color5 = ""
                     color6 = "C"
                     colorsign = "Color="
-                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                 } else {
                     color6 = ""
-                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)$cost$format$funny$firstprint")
+                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($format$core)$cost$funny$firstprint")
                     checkColor()
                     check()
                 }
@@ -820,19 +902,19 @@ class MainActivity : AppCompatActivity() {
                     color5 = ""
                     color6 = "C"
                     colorsign = "Color<="
-                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                 } else {
                     color6 = ""
-                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)$cost$format$funny$firstprint")
+                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($format$core)$cost$funny$firstprint")
                     checkColor()
                     check()
                 }
                 else -> if (checkbox13.isChecked) {
                     color6 = "color=C or "
-                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                 } else {
                     color6 = ""
-                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                     checkColor()
                     check()
                 }
@@ -842,10 +924,10 @@ class MainActivity : AppCompatActivity() {
         checkbox14.setOnCheckedChangeListener { _, _ ->
             if (checkbox14.isChecked) {
                 funny = "-is:funny "
-                edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
             } else {
                 funny= ""
-                edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                 check()
             }
         }
@@ -853,10 +935,10 @@ class MainActivity : AppCompatActivity() {
         checkbox15.setOnCheckedChangeListener { _, _ ->
             if (checkbox15.isChecked) {
                 firstprint = "is:firstprint"
-                edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
             } else {
                 firstprint = ""
-                edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                 check()
             }
         }
@@ -864,10 +946,10 @@ class MainActivity : AppCompatActivity() {
         checkbox16.setOnCheckedChangeListener { _, _ ->
             if (checkbox16.isChecked) {
                 type8 = "is:Commander or "
-                edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
             } else {
                 type8 = ""
-                edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)$cost$format$funny$firstprint")
+                edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                 check()
             }
         }
