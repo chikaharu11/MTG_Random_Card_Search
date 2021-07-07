@@ -1,4 +1,4 @@
-package com.example.magicthegatheringrandomcardsearch
+package jp.chikaharu11.mtg_random_card_search
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -77,7 +77,7 @@ class MainActivity : AppCompatActivity() {
         val checkbox16 = findViewById<CheckBox>(R.id.checkBox16)
         val checkbox17 = findViewById<CheckBox>(R.id.checkBox17)
 
-        val radigroup = findViewById<RadioGroup>(R.id.radioGroup)
+        val radiogroup = findViewById<RadioGroup>(R.id.radioGroup)
         val radiobutton = findViewById<RadioButton>(R.id.radioButton)
         val radiobutton2 = findViewById<RadioButton>(R.id.radioButton2)
         val radiobutton3 = findViewById<RadioButton>(R.id.radioButton3)
@@ -525,7 +525,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        radigroup.setOnCheckedChangeListener { _, _ ->
+        radiogroup.setOnCheckedChangeListener { _, _ ->
             when {
                 radiobutton.isChecked -> {
                     checkbox8.isChecked = false
@@ -974,7 +974,7 @@ class MainActivity : AppCompatActivity() {
                 checkbox15.isChecked = false
                 checkbox16.isChecked = false
                 checkbox17.isChecked = false
-                radigroup.clearCheck()
+                radiogroup.clearCheck()
                 spinner.setSelection(0)
                 spinner2.setSelection(0)
                 spinner3.setSelection(0)

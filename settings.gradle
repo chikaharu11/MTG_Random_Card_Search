@@ -1,2 +1,2 @@
-rootProject.name = "Magic The Gathering Random Card Search"
+rootProject.name = "MTG Random Card Search"
 include ':app'
