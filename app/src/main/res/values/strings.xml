@@ -19,15 +19,15 @@
     <string name="checkbox11">R</string>
     <string name="checkbox12">G</string>
     <string name="checkbox13">C</string>
-    <string name="checkbox14">アン・シリーズを除く</string>
-    <string name="checkbox15">初収録時のカード画像</string>
-    <string name="textview">マナコスト</string>
-    <string name="textview2">フォーマット or ブロック</string>
-    <string name="button4">ヴァンガード</string>
+    <string name="checkbox14">Except for the Un series</string>
+    <string name="checkbox15">First Printing</string>
+    <string name="textview">Mana Cost</string>
+    <string name="textview2">Format or Block</string>
+    <string name="button4">Vanguard</string>
     <string name="todo">TODO</string>
-    <string name="radiobutton">〜のどれか一色</string>
-    <string name="radiobutton2">〜の全てを含む色</string>
-    <string name="radiobutton3">〜のいずれかを含む色</string>
-    <string name="checkbox17">リセット</string>
-    <string name="textview3">基本セット</string>
+    <string name="radiobutton">Any One Color</string>
+    <string name="radiobutton2">Exactly These Colors</string>
+    <string name="radiobutton3">Including These Colors</string>
+    <string name="checkbox17">Reset</string>
+    <string name="textview3">Core Set</string>
 </resources>
