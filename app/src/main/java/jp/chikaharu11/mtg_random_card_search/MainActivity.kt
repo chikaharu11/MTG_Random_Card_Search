@@ -13,6 +13,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -36,6 +37,8 @@ class MainActivity : AppCompatActivity() {
     private var colorsign = ""
     private var funny = ""
     private var firstprint = ""
+
+    private val locale: Locale = Locale.getDefault()
 
 
     @SuppressLint("SetJavaScriptEnabled", "SetTextI18n")
@@ -142,7 +145,11 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        val spinnerItems = arrayOf("指定しない", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17以上" )
+        val spinnerItems = if (locale == Locale.JAPAN) {
+            arrayOf("指定しない", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17以上" )
+        } else {
+            arrayOf("No specified", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17 or more" )
+        }
 
         val adapter = ArrayAdapter(this, R.layout.spinner_item, spinnerItems)
 
@@ -163,7 +170,7 @@ class MainActivity : AppCompatActivity() {
                         ""
                     }
                     18 -> {
-                        " cmc>=$cost2 "
+                        " cmc>=17 "
                     }
                     else -> {
                         " cmc=$cost2 "
@@ -179,10 +186,17 @@ class MainActivity : AppCompatActivity() {
         }
         spinner.isFocusable = false
 
-        val spinnerItems2 = arrayOf("指定しない                        ", "Standard", "Future", "Historic", "Gladiator", "Pioneer", "Modern", "Legacy", "Pauper", "Vintage", "Penny", "Commander",
-            "Brawl", "Duel", "Oldschool", "Premodern", "Guilds of Ravnica", "Ixalan", "Amonkhet", "Kaladesh", "Shadows over Innistrad", "Battle for Zendikar", "Khans of Tarkir", "Theros",
-            "Return to Ravnica", "Innistrad", "Scars of Mirrodin", "Zendikar", "Alara", "Shadowmoor", "Lorwyn", "Time Spiral", "Ravnica", "Kamigawa", "Mirrodin", "Onslaught", "Odyssey",
-            "Invasion", "Masques", "Urza", "Tempest", "Mirage", "Ice Age", "Old Expansion")
+        val spinnerItems2 = if (locale == Locale.JAPAN) {
+            arrayOf("指定しない                        ", "Standard", "Future", "Historic", "Gladiator", "Pioneer", "Modern", "Legacy", "Pauper", "Vintage", "Penny", "Commander",
+                "Brawl", "Duel", "Oldschool", "Premodern", "Guilds of Ravnica", "Ixalan", "Amonkhet", "Kaladesh", "Shadows over Innistrad", "Battle for Zendikar", "Khans of Tarkir", "Theros",
+                "Return to Ravnica", "Innistrad", "Scars of Mirrodin", "Zendikar", "Alara", "Shadowmoor", "Lorwyn", "Time Spiral", "Ravnica", "Kamigawa", "Mirrodin", "Onslaught", "Odyssey",
+                "Invasion", "Masques", "Urza", "Tempest", "Mirage", "Ice Age", "Old Expansion")
+        } else {
+            arrayOf("No specified                        ", "Standard", "Future", "Historic", "Gladiator", "Pioneer", "Modern", "Legacy", "Pauper", "Vintage", "Penny", "Commander",
+                "Brawl", "Duel", "Oldschool", "Premodern", "Guilds of Ravnica", "Ixalan", "Amonkhet", "Kaladesh", "Shadows over Innistrad", "Battle for Zendikar", "Khans of Tarkir", "Theros",
+                "Return to Ravnica", "Innistrad", "Scars of Mirrodin", "Zendikar", "Alara", "Shadowmoor", "Lorwyn", "Time Spiral", "Ravnica", "Kamigawa", "Mirrodin", "Onslaught", "Odyssey",
+                "Invasion", "Masques", "Urza", "Tempest", "Mirage", "Ice Age", "Old Expansion")
+        }
 
         val adapter2 = ArrayAdapter(this, R.layout.spinner_item, spinnerItems2)
 
@@ -345,30 +359,57 @@ class MainActivity : AppCompatActivity() {
         }
         spinner2.isFocusable = false
 
-        val spinnerItems3 = arrayOf(
-        "含めない",
-        "Core Set 2021 (M21)",
-        "Core Set 2020 (M20)",
-        "Core Set 2019 (M19)",
-        "Magic Origins (ORI)",
-        "Magic 2015 (M15)",
-        "Magic 2014 (M14)",
-        "Magic 2013 (M13)",
-        "Magic 2012 (M12)",
-        "Magic 2011 (M11)",
-        "Magic 2010 (M10)",
-        "Tenth Edition (10E)",
-        "Ninth Edition (9ED)",
-        "Eighth Edition (8ED)",
-        "Seventh Edition (7ED)",
-        "Classic Sixth Edition (6ED)",
-        "Fifth Edition (5ED)",
-        "Fourth Edition (4ED)",
-        "Revised Edition (3ED)",
-        "Unlimited Edition (2ED)",
-        "Limited Edition Beta (LEB)",
-        "Limited Edition Alpha (LEA)"
-        )
+        val spinnerItems3 = if (locale == Locale.JAPAN) {
+            arrayOf(
+                "含めない",
+                "Core Set 2021 (M21)",
+                "Core Set 2020 (M20)",
+                "Core Set 2019 (M19)",
+                "Magic Origins (ORI)",
+                "Magic 2015 (M15)",
+                "Magic 2014 (M14)",
+                "Magic 2013 (M13)",
+                "Magic 2012 (M12)",
+                "Magic 2011 (M11)",
+                "Magic 2010 (M10)",
+                "Tenth Edition (10E)",
+                "Ninth Edition (9ED)",
+                "Eighth Edition (8ED)",
+                "Seventh Edition (7ED)",
+                "Classic Sixth Edition (6ED)",
+                "Fifth Edition (5ED)",
+                "Fourth Edition (4ED)",
+                "Revised Edition (3ED)",
+                "Unlimited Edition (2ED)",
+                "Limited Edition Beta (LEB)",
+                "Limited Edition Alpha (LEA)"
+            )
+        } else {
+            arrayOf(
+                "No including",
+                "Core Set 2021 (M21)",
+                "Core Set 2020 (M20)",
+                "Core Set 2019 (M19)",
+                "Magic Origins (ORI)",
+                "Magic 2015 (M15)",
+                "Magic 2014 (M14)",
+                "Magic 2013 (M13)",
+                "Magic 2012 (M12)",
+                "Magic 2011 (M11)",
+                "Magic 2010 (M10)",
+                "Tenth Edition (10E)",
+                "Ninth Edition (9ED)",
+                "Eighth Edition (8ED)",
+                "Seventh Edition (7ED)",
+                "Classic Sixth Edition (6ED)",
+                "Fifth Edition (5ED)",
+                "Fourth Edition (4ED)",
+                "Revised Edition (3ED)",
+                "Unlimited Edition (2ED)",
+                "Limited Edition Beta (LEB)",
+                "Limited Edition Alpha (LEA)"
+            )
+        }
 
         val adapter3 = ArrayAdapter(this, R.layout.spinner_item, spinnerItems3)
 
