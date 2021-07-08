@@ -10,6 +10,9 @@ import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 
 class MainActivity : AppCompatActivity() {
 
@@ -57,6 +60,12 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        MobileAds.initialize(this) {}
+
+        val adView = findViewById<AdView>(R.id.adView)
+        val adRequest = AdRequest.Builder().build()
+        adView.loadAd(adRequest)
+
         val edittext = findViewById<EditText>(R.id.searchText)
 
         val checkbox = findViewById<CheckBox>(R.id.checkBox)
@@ -89,6 +98,7 @@ class MainActivity : AppCompatActivity() {
 
         val textview = findViewById<TextView>(R.id.textView)
         val textview2 = findViewById<TextView>(R.id.textView2)
+        val textview3 = findViewById<TextView>(R.id.textView3)
 
 
         val spinner = findViewById<Spinner>(R.id.spinner)
@@ -1012,6 +1022,9 @@ class MainActivity : AppCompatActivity() {
         }
         textview2.setOnClickListener {
             spinner2.performClick()
+        }
+        textview3.setOnClickListener {
+            spinner3.performClick()
         }
     }
 }
