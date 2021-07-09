@@ -4,5 +4,6 @@
     android:singleLine="true"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:textSize="16sp"
+    android:textSize="14sp"
+    android:textColor="#5171A5"
     android:ellipsize="marquee" />
