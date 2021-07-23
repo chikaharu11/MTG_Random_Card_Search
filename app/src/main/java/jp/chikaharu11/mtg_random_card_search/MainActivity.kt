@@ -10,10 +10,12 @@ import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.AdView
-import com.google.android.gms.ads.MobileAds
+import androidx.core.view.isInvisible
+import androidx.core.view.isVisible
+import com.google.gson.Gson
+import java.net.URL
 import java.util.*
+import kotlin.concurrent.thread
 
 class MainActivity : AppCompatActivity() {
 
@@ -38,6 +40,9 @@ class MainActivity : AppCompatActivity() {
     private var funny = ""
     private var firstprint = ""
 
+    private var jaName2 = ""
+    private var enName2 = ""
+
     private val locale: Locale = Locale.getDefault()
 
 
@@ -47,6 +52,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val webView = findViewById<WebView>(R.id.webView)
+        val webView2 = findViewById<WebView>(R.id.webView2)
         val layoutView =findViewById<ConstraintLayout>(R.id.layoutView)
 
         webView.settings.builtInZoomControls = true
@@ -57,17 +63,25 @@ class MainActivity : AppCompatActivity() {
         webView.webViewClient = object : WebViewClient() {
             override fun shouldOverrideUrlLoading(
                 view: WebView?,
-                request: WebResourceRequest?
+                request: WebResourceRequest?,
             ): Boolean {
                 return false
             }
         }
 
-        MobileAds.initialize(this) {}
+        webView2.settings.builtInZoomControls = true
+        webView2.settings.javaScriptEnabled = true
+        webView2.settings.useWideViewPort = true
+        webView2.loadUrl("http://m.mtgwiki.com/wiki/")
 
-        val adView = findViewById<AdView>(R.id.adView)
-        val adRequest = AdRequest.Builder().build()
-        adView.loadAd(adRequest)
+        webView2.webViewClient = object : WebViewClient() {
+            override fun shouldOverrideUrlLoading(
+                view: WebView?,
+                request: WebResourceRequest?,
+            ): Boolean {
+                return false
+            }
+        }
 
         val edittext = findViewById<EditText>(R.id.searchText)
 
@@ -88,6 +102,7 @@ class MainActivity : AppCompatActivity() {
         val checkbox15 = findViewById<CheckBox>(R.id.checkBox15)
         val checkbox16 = findViewById<CheckBox>(R.id.checkBox16)
         val checkbox17 = findViewById<CheckBox>(R.id.checkBox17)
+        val checkbox18 = findViewById<CheckBox>(R.id.checkBox18)
 
         val radiogroup = findViewById<RadioGroup>(R.id.radioGroup)
         val radiobutton = findViewById<RadioButton>(R.id.radioButton)
@@ -108,6 +123,54 @@ class MainActivity : AppCompatActivity() {
         val spinner2 = findViewById<Spinner>(R.id.spinner2)
         val spinner3 = findViewById<Spinner>(R.id.spinner3)
 
+        fun readFromAsset(): List<Model> {
+            val filename = "android_version.json"
+
+            val bufferReader = application.assets.open(filename).bufferedReader()
+
+            val jsonstring = bufferReader.use {
+                it.readText()
+            }
+            val gson = Gson()
+            return gson.fromJson(jsonstring, Array<Model>::class.java).toList()
+        }
+
+        val modelList: List<Model> = readFromAsset()
+
+        val customDropDownAdapter = CustomDropDownAdapter(this, modelList)
+
+        fun readFromAsset2(): List<Model> {
+            val filename2 = "android_version2.json"
+
+            val bufferReader = application.assets.open(filename2).bufferedReader()
+
+            val jsonstring2 = bufferReader.use {
+                it.readText()
+            }
+            val gson = Gson()
+            return gson.fromJson(jsonstring2, Array<Model>::class.java).toList()
+        }
+
+        val modelList2: List<Model> = readFromAsset2()
+
+        val customDropDownAdapter2 = CustomDropDownAdapter(this, modelList2)
+
+        fun readFromAsset3(): List<Model> {
+            val filename3 = "android_version3.json"
+
+            val bufferReader = application.assets.open(filename3).bufferedReader()
+
+            val jsonstring3 = bufferReader.use {
+                it.readText()
+            }
+            val gson = Gson()
+            return gson.fromJson(jsonstring3, Array<Model>::class.java).toList()
+        }
+
+        val modelList3: List<Model> = readFromAsset3()
+
+        val customDropDownAdapter3 = CustomDropDownAdapter(this, modelList3)
+
         fun check(){
             if (!checkbox.isChecked &&
                 !checkbox2.isChecked &&
@@ -125,11 +188,17 @@ class MainActivity : AppCompatActivity() {
                 !checkbox14.isChecked &&
                 !checkbox15.isChecked &&
                 !checkbox16.isChecked &&
+                !checkbox18.isChecked &&
                 spinner.selectedItemPosition == 0 &&
                 spinner2.selectedItemPosition == 0 &&
                 spinner3.selectedItemPosition == 0) {
                 edittext.setText("https://scryfall.com/random?q=")
             }
+        }
+
+        fun check18() {
+            if (checkbox18.isChecked)
+                checkbox18.isChecked = false
         }
 
         fun checkColor(){
@@ -140,8 +209,8 @@ class MainActivity : AppCompatActivity() {
                 !checkbox11.isChecked &&
                 !checkbox12.isChecked &&
                 !checkbox13.isChecked) {
-                    colorsign = ""
-                    edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
+                colorsign = ""
+                edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
             }
         }
 
@@ -155,7 +224,7 @@ class MainActivity : AppCompatActivity() {
 
         adapter.setDropDownViewResource(R.layout.spinner_dropdown_item)
 
-        spinner.adapter = adapter
+        spinner.adapter = customDropDownAdapter3
 
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
 
@@ -164,20 +233,71 @@ class MainActivity : AppCompatActivity() {
                     spinner.isFocusable = true
                     return
                 }
-                val cost2 = parent?.selectedItem as String
                 cost = when(position) {
                     0 -> {
                         ""
                     }
+                    1 -> {
+                        "cmc=0 "
+                    }
+                    2 -> {
+                        "cmc=1 "
+                    }
+                    3 -> {
+                        "cmc=2 "
+                    }
+                    4 -> {
+                        "cmc=3 "
+                    }
+                    5 -> {
+                        "cmc=4 "
+                    }
+                    6 -> {
+                        "cmc=5 "
+                    }
+                    7 -> {
+                        "cmc=6 "
+                    }
+                    8 -> {
+                        "cmc=7 "
+                    }
+                    9 -> {
+                        "cmc=8 "
+                    }
+                    10 -> {
+                        "cmc=9 "
+                    }
+                    11 -> {
+                        "cmc=10 "
+                    }
+                    12 -> {
+                        "cmc=11 "
+                    }
+                    13 -> {
+                        "cmc=12 "
+                    }
+                    14 -> {
+                        "cmc=13 "
+                    }
+                    15 -> {
+                        "cmc=14 "
+                    }
+                    16 -> {
+                        "cmc=15 "
+                    }
+                    17 -> {
+                        "cmc=16 "
+                    }
                     18 -> {
-                        " cmc>=17 "
+                        "cmc>=17 "
                     }
                     else -> {
-                        " cmc=$cost2 "
+                        ""
                     }
                 }
                 edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                 check()
+                check18()
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -202,7 +322,7 @@ class MainActivity : AppCompatActivity() {
 
         adapter2.setDropDownViewResource(R.layout.spinner_dropdown_item)
 
-        spinner2.adapter = adapter2
+        spinner2.adapter = customDropDownAdapter
 
         spinner2.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
 
@@ -211,55 +331,55 @@ class MainActivity : AppCompatActivity() {
                     spinner2.isFocusable = true
                     return
                 }
-                val format2 = parent?.selectedItem as String
+
                 format = when(position) {
                     0 -> {
                         ""
                     }
                     1 -> {
-                        "format:$format2 "
+                        "format:Standard "
                     }
                     2 -> {
-                        "format:$format2 "
+                        "format:Future "
                     }
                     3 -> {
-                        "format:$format2 "
+                        "format:Historic "
                     }
                     4 -> {
-                        "format:$format2 "
+                        "format:Gladiator "
                     }
                     5 -> {
-                        "format:$format2 "
+                        "format:Pioneer "
                     }
                     6 -> {
-                        "format:$format2 "
+                        "format:Modern "
                     }
                     7 -> {
-                        "format:$format2 "
+                        "format:Legacy "
                     }
                     8 -> {
-                        "format:$format2 "
+                        "format:Pauper "
                     }
                     9 -> {
-                        "format:$format2 "
+                        "format:Vintage "
                     }
                     10 -> {
-                        "format:$format2 "
+                        "format:Penny "
                     }
                     11 -> {
-                        "format:$format2 "
+                        "format:Commander "
                     }
                     12 -> {
-                        "format:$format2 "
+                        "format:Brawl "
                     }
                     13 -> {
-                        "format:$format2 "
+                        "format:Duel "
                     }
                     14 -> {
-                        "format:$format2 "
+                        "format:Oldschool "
                     }
                     15 -> {
-                        "format:$format2 "
+                        "format:Premodern "
                     }
                     16 -> {
                         "block:grn or "
@@ -351,8 +471,9 @@ class MainActivity : AppCompatActivity() {
                 }
                 edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                 check()
+                check18()
             }
-            
+
             override fun onNothingSelected(parent: AdapterView<*>?) {
 
             }
@@ -415,7 +536,7 @@ class MainActivity : AppCompatActivity() {
 
         adapter3.setDropDownViewResource(R.layout.spinner_dropdown_item)
 
-        spinner3.adapter = adapter3
+        spinner3.adapter = customDropDownAdapter2
 
         spinner3.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
 
@@ -497,6 +618,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                 check()
+                check18()
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -509,6 +631,7 @@ class MainActivity : AppCompatActivity() {
             if (checkbox.isChecked) {
                 type = "type:creature or "
                 edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
+                check18()
             } else {
                 type = ""
                 edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
@@ -519,6 +642,7 @@ class MainActivity : AppCompatActivity() {
             if (checkbox2.isChecked) {
                 type2 = "type:planeswalker or "
                 edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
+                check18()
             } else {
                 type2 = ""
                 edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
@@ -529,6 +653,7 @@ class MainActivity : AppCompatActivity() {
             if (checkbox3.isChecked) {
                 type3 = "type:Artifact or "
                 edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
+                check18()
             } else {
                 type3 = ""
                 edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
@@ -539,6 +664,7 @@ class MainActivity : AppCompatActivity() {
             if (checkbox4.isChecked) {
                 type4 = "type:Instant or "
                 edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
+                check18()
             } else {
                 type4 = ""
                 edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
@@ -549,6 +675,7 @@ class MainActivity : AppCompatActivity() {
             if (checkbox5.isChecked) {
                 type5 = "type:Sorcery or "
                 edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
+                check18()
             } else {
                 type5 = ""
                 edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
@@ -559,6 +686,7 @@ class MainActivity : AppCompatActivity() {
             if (checkbox6.isChecked) {
                 type6 = "type:Enchantment or "
                 edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
+                check18()
             } else {
                 type6 = ""
                 edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
@@ -569,6 +697,7 @@ class MainActivity : AppCompatActivity() {
             if (checkbox7.isChecked) {
                 type7 = "type:Land or "
                 edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
+                check18()
             } else {
                 type7 = ""
                 edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
@@ -610,6 +739,7 @@ class MainActivity : AppCompatActivity() {
                 radiobutton.isChecked -> if (checkbox8.isChecked) {
                     color = "color=W or "
                     edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
+                    check18()
                 } else {
                     color = ""
                     edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
@@ -628,13 +758,14 @@ class MainActivity : AppCompatActivity() {
                     color = "W"
                     colorsign = "Color="
                     edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
+                    check18()
                 } else {
                     color = ""
                     colorsign = "Color="
                     edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
                     checkColor()
                     check()
-            }
+                }
                 radiobutton3.isChecked -> if (checkbox8.isChecked && checkbox13.isChecked){
                     checkbox13.isChecked = false
                     color6 = ""
@@ -647,6 +778,7 @@ class MainActivity : AppCompatActivity() {
                     color = "W"
                     colorsign = "Color<="
                     edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
+                    check18()
                 } else {
                     color = ""
                     colorsign = "Color<="
@@ -657,6 +789,7 @@ class MainActivity : AppCompatActivity() {
                 else -> if (checkbox8.isChecked) {
                     color = "color=W or "
                     edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
+                    check18()
                 } else {
                     color = ""
                     edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
@@ -671,6 +804,7 @@ class MainActivity : AppCompatActivity() {
                 radiobutton.isChecked -> if (checkbox9.isChecked) {
                     color2 = "color=U or "
                     edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
+                    check18()
                 } else {
                     color2 = ""
                     edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
@@ -689,6 +823,7 @@ class MainActivity : AppCompatActivity() {
                     color2 = "U"
                     colorsign = "Color="
                     edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
+                    check18()
                 } else {
                     color2 = ""
                     colorsign = "Color="
@@ -708,6 +843,7 @@ class MainActivity : AppCompatActivity() {
                     color2 = "U"
                     colorsign = "Color<="
                     edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
+                    check18()
                 } else {
                     color2 = ""
                     colorsign = "Color<="
@@ -718,6 +854,7 @@ class MainActivity : AppCompatActivity() {
                 else -> if (checkbox9.isChecked) {
                     color2 = "color=U or "
                     edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
+                    check18()
                 } else {
                     color2 = ""
                     edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
@@ -732,6 +869,7 @@ class MainActivity : AppCompatActivity() {
                 radiobutton.isChecked -> if (checkbox10.isChecked) {
                     color3 = "color=B or "
                     edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
+                    check18()
                 } else {
                     color3 = ""
                     edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
@@ -750,6 +888,7 @@ class MainActivity : AppCompatActivity() {
                     color3 = "B"
                     colorsign = "Color="
                     edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
+                    check18()
                 } else {
                     color3 = ""
                     colorsign = "Color="
@@ -769,6 +908,7 @@ class MainActivity : AppCompatActivity() {
                     color3 = "B"
                     colorsign = "Color<="
                     edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
+                    check18()
                 } else {
                     color3 = ""
                     colorsign = "Color<="
@@ -779,6 +919,7 @@ class MainActivity : AppCompatActivity() {
                 else -> if (checkbox10.isChecked) {
                     color3 = "color=B or "
                     edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
+                    check18()
                 } else {
                     color3 = ""
                     edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
@@ -793,6 +934,7 @@ class MainActivity : AppCompatActivity() {
                 radiobutton.isChecked -> if (checkbox11.isChecked) {
                     color4 = "color=R or "
                     edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
+                    check18()
                 } else {
                     color4 = ""
                     edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
@@ -811,6 +953,7 @@ class MainActivity : AppCompatActivity() {
                     color4 = "R"
                     colorsign = "Color="
                     edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
+                    check18()
                 } else {
                     color4 = ""
                     colorsign = "Color="
@@ -830,6 +973,7 @@ class MainActivity : AppCompatActivity() {
                     color4 = "R"
                     colorsign = "Color<="
                     edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
+                    check18()
                 } else {
                     color4 = ""
                     colorsign = "Color<="
@@ -840,6 +984,7 @@ class MainActivity : AppCompatActivity() {
                 else -> if (checkbox11.isChecked) {
                     color4 = "color=R or "
                     edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
+                    check18()
                 } else {
                     color4 = ""
                     edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
@@ -854,6 +999,7 @@ class MainActivity : AppCompatActivity() {
                 radiobutton.isChecked -> if (checkbox12.isChecked) {
                     color5 = "color=G or "
                     edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
+                    check18()
                 } else {
                     color5 = ""
                     edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
@@ -872,6 +1018,7 @@ class MainActivity : AppCompatActivity() {
                     color5 = "G"
                     colorsign = "Color="
                     edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
+                    check18()
                 } else {
                     color5 = ""
                     colorsign = "Color="
@@ -891,6 +1038,7 @@ class MainActivity : AppCompatActivity() {
                     color5 = "G"
                     colorsign = "Color<="
                     edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
+                    check18()
                 } else {
                     color5 = ""
                     colorsign = "Color<="
@@ -901,6 +1049,7 @@ class MainActivity : AppCompatActivity() {
                 else -> if (checkbox12.isChecked) {
                     color5 = "color=G or "
                     edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
+                    check18()
                 } else {
                     color5 = ""
                     edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
@@ -915,6 +1064,7 @@ class MainActivity : AppCompatActivity() {
                 radiobutton.isChecked -> if (checkbox13.isChecked) {
                     color6 = "color=C or "
                     edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
+                    check18()
                 } else {
                     color6 = ""
                     edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
@@ -935,6 +1085,7 @@ class MainActivity : AppCompatActivity() {
                     color6 = "C"
                     colorsign = "Color="
                     edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
+                    check18()
                 } else {
                     color6 = ""
                     edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($format$core)$cost$funny$firstprint")
@@ -955,6 +1106,7 @@ class MainActivity : AppCompatActivity() {
                     color6 = "C"
                     colorsign = "Color<="
                     edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
+                    check18()
                 } else {
                     color6 = ""
                     edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($format$core)$cost$funny$firstprint")
@@ -964,6 +1116,7 @@ class MainActivity : AppCompatActivity() {
                 else -> if (checkbox13.isChecked) {
                     color6 = "color=C or "
                     edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
+                    check18()
                 } else {
                     color6 = ""
                     edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
@@ -977,6 +1130,7 @@ class MainActivity : AppCompatActivity() {
             if (checkbox14.isChecked) {
                 funny = "-is:funny "
                 edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
+                check18()
             } else {
                 funny= ""
                 edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
@@ -988,6 +1142,7 @@ class MainActivity : AppCompatActivity() {
             if (checkbox15.isChecked) {
                 firstprint = "is:firstprint"
                 edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
+                check18()
             } else {
                 firstprint = ""
                 edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
@@ -999,6 +1154,7 @@ class MainActivity : AppCompatActivity() {
             if (checkbox16.isChecked) {
                 type8 = "is:Commander or "
                 edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
+                check18()
             } else {
                 type8 = ""
                 edittext.setText("https://scryfall.com/random?q=($type$type2$type3$type4$type5$type6$type7$type8)($colorsign$color$color2$color3$color4$color5$color6)($format$core)$cost$funny$firstprint")
@@ -1025,6 +1181,7 @@ class MainActivity : AppCompatActivity() {
                 checkbox15.isChecked = false
                 checkbox16.isChecked = false
                 checkbox17.isChecked = false
+                checkbox18.isChecked = false
                 radiogroup.clearCheck()
                 spinner.setSelection(0)
                 spinner2.setSelection(0)
@@ -1033,14 +1190,59 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        checkbox18.setOnCheckedChangeListener { _, _ ->
+            if (checkbox18.isChecked) {
+                checkbox.isChecked = false
+                checkbox2.isChecked = false
+                checkbox3.isChecked = false
+                checkbox4.isChecked = false
+                checkbox5.isChecked = false
+                checkbox6.isChecked = false
+                checkbox7.isChecked = false
+                checkbox8.isChecked = false
+                checkbox9.isChecked = false
+                checkbox10.isChecked = false
+                checkbox11.isChecked = false
+                checkbox12.isChecked = false
+                checkbox13.isChecked = false
+                checkbox14.isChecked = false
+                checkbox15.isChecked = false
+                checkbox16.isChecked = false
+                checkbox17.isChecked = false
+                radiogroup.clearCheck()
+                spinner.setSelection(0)
+                spinner2.setSelection(0)
+                spinner3.setSelection(0)
+                edittext.setText("https://scryfall.com/random?q=type:vanguard")
+            } else {
+                check()
+            }
+        }
+
         button.setOnClickListener{
             layoutView.visibility = View.INVISIBLE
             webView.visibility = View.VISIBLE
+            webView2.visibility = View.INVISIBLE
             webView.loadUrl(edittext.text.toString())
         }
         button2.setOnClickListener{
-            webView.visibility = View.INVISIBLE
-            layoutView.visibility = View.VISIBLE
+            when {
+                webView2.isVisible && webView.isInvisible -> {
+                    webView2.visibility = View.INVISIBLE
+                    layoutView.visibility = View.VISIBLE
+                }
+                webView2.isVisible -> {
+                    webView2.visibility = View.INVISIBLE
+                }
+                webView.isVisible -> {
+                    webView.visibility = View.INVISIBLE
+                    layoutView.visibility = View.VISIBLE
+                }
+                webView.isInvisible -> {
+                    webView.visibility = View.VISIBLE
+                    layoutView.visibility = View.INVISIBLE
+                }
+            }
         }
         button3.setOnClickListener{
             AlertDialog.Builder(this)
@@ -1054,9 +1256,36 @@ class MainActivity : AppCompatActivity() {
                 .show()
         }
         button4.setOnClickListener{
+            val engName = webView.url?.replaceBeforeLast("/","")?.replace("/","")
+            thread {
+                try {
+                    val api = URL("https://api.scryfall.com/cards/search?q=!$engName lang:ja").readText()
+
+                    val jaName = api.replaceBeforeLast("\"printed_name\":\"","").replace("\"printed_name\":\"","").replaceAfterLast("\",\"lang\":\"ja\"","").replace("\",\"lang\":\"ja\"","/")
+                    val enName = api.replaceBeforeLast("\"name\":\"","").replace("\"name\":\"","").replaceAfterLast("\",\"printed_name\":\"","").replace("\",\"printed_name\":\"","")
+
+                    jaName2 = jaName
+                    enName2 = enName
+                } catch (e: Exception) {
+                    val api = URL("https://api.scryfall.com/cards/search?q=!$engName").readText()
+
+                    val enName = api.replaceBeforeLast("\"name\":\"","").replace("\"name\":\"","").replaceAfterLast("\",\"lang\":\"en\"","").replace("\",\"lang\":\"en\"","")
+
+                    jaName2 = ""
+                    enName2 = enName
+                } finally {
+                    return@thread
+                }
+            }.join()
+
             layoutView.visibility = View.INVISIBLE
-            webView.visibility = View.VISIBLE
-            webView.loadUrl("https://scryfall.com/random?q=type:vanguard")
+            webView2.visibility = View.VISIBLE
+            if (locale == Locale.JAPAN) {
+                webView2.loadUrl("http://m.mtgwiki.com/wiki/$jaName2${enName2.replace(" ", "_")}")
+            } else {
+                webView2.loadUrl("https://translate.google.com/translate?sl=auto&tl=en&u=http://m.mtgwiki.com/wiki/$jaName2${enName2.replace(" ", "_")}")
+            }
+
         }
         textview.setOnClickListener {
             spinner.performClick()

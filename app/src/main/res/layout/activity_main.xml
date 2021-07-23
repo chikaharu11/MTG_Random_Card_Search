@@ -17,6 +17,17 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
+    <WebView
+        android:id="@+id/webView2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layoutView"
         android:layout_width="match_parent"
@@ -145,9 +156,21 @@
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:text="@string/checkbox7"
-            app:layout_constraintBottom_toTopOf="@+id/searchText"
+            app:layout_constraintBottom_toTopOf="@+id/checkBox18"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/checkBox16"
+            tools:ignore="MissingConstraints" />
+
+        <CheckBox
+            android:id="@+id/checkBox18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:text="@string/checkbox18"
+            app:layout_constraintBottom_toTopOf="@+id/searchText"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/checkBox7"
             tools:ignore="MissingConstraints" />
 
         <RadioGroup
@@ -273,7 +296,7 @@
             android:layout_height="wrap_content"
             android:text="@string/checkbox17"
             app:layout_constraintStart_toStartOf="@+id/checkBox15"
-            app:layout_constraintTop_toTopOf="@+id/checkBox7" />
+            app:layout_constraintTop_toTopOf="@+id/checkBox18" />
 
         <Spinner
             android:id="@+id/spinner2"

@@ -1,0 +1,177 @@
+[
+  {
+    "name": "No specified",
+    "url": ""
+  },
+  {
+    "name": "Standard",
+    "url": ""
+  },
+  {
+    "name": "Future",
+    "url": ""
+  },
+  {
+    "name": "Historic",
+    "url": ""
+  },
+  {
+    "name": "Gladiator",
+    "url": ""
+  },
+  {
+    "name": "Pioneer",
+    "url": ""
+  },
+  {
+    "name": "Modern",
+    "url": ""
+  },
+  {
+    "name": "Legacy",
+    "url": ""
+  },
+  {
+    "name": "Pauper",
+    "url": ""
+  },
+  {
+    "name": "Vintage",
+    "url": ""
+  },
+  {
+    "name": "Penny",
+    "url": ""
+  },
+  {
+    "name": "Commander",
+    "url": ""
+  },
+  {
+    "name": "Brawl",
+    "url": ""
+  },
+  {
+    "name": "Duel",
+    "url": ""
+  },
+  {
+    "name": "Oldschool",
+    "url": ""
+  },
+  {
+    "name": "Guilds of Ravnica Block",
+    "url": "grn"
+  },
+  {
+    "name": "Ixalan Block",
+    "url": "xln"
+  },
+  {
+    "name": "Amonkhet Block",
+    "url": "akh"
+  },
+  {
+    "name": "Kaladesh Block",
+    "url": "kld"
+  },
+  {
+    "name": "Shadows over Innistrad Block",
+    "url": "soi"
+  },
+
+  {
+    "name": "Battle for Zendikar Block",
+    "url": "bfz"
+  },
+  {
+    "name": "Khans of Tarkir Block",
+    "url": "ktk"
+  },
+
+  {
+    "name": "Theros Block",
+    "url": "ths"
+  },
+  {
+    "name": "Return to Ravnica Block",
+    "url": "rtr"
+  },
+
+  {
+    "name": "Innistrad Block",
+    "url": "isd"
+  },
+  {
+    "name": "Scars of Mirrodin Block",
+    "url": "som"
+  },
+  {
+    "name": "Zendikar Block",
+    "url": "zen"
+  },
+  {
+    "name": "Alara Block",
+    "url": "ala"
+  },
+  {
+    "name": "Shadowmoor Block",
+    "url": "shm"
+  },
+  {
+    "name": "Lorwyn Block",
+    "url": "lrw"
+  },
+  {
+    "name": "Time Spiral Block",
+    "url": "tsp"
+  },
+  {
+    "name": "Ravnica Block",
+    "url": "rav"
+  },
+  {
+    "name": "Kamigawa Block",
+    "url": "chk"
+  },
+  {
+    "name": "Mirrodin Block",
+    "url": "mrd"
+  },
+  {
+    "name": "Onslaught Block",
+    "url": "ons"
+  },
+  {
+    "name": "Odyssey Block",
+    "url": "ody"
+  },
+  {
+    "name": "Invasion Block",
+    "url": "inv"
+  },
+  {
+    "name": "Masques Block",
+    "url": "mmq"
+  },
+  {
+    "name": "Urza Block",
+    "url": "usg"
+  },
+  {
+    "name": "Tempest Block",
+    "url": "tmp"
+  },
+  {
+    "name": "Mirage Block",
+    "url": "mir"
+  },
+  {
+    "name": "Ice Age Block",
+    "url": "ice"
+  },
+  {
+    "name": "Old Expansion",
+    "url": ""
+  }
+]
