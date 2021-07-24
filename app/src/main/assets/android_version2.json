@@ -68,26 +68,26 @@
   },
   {
     "name": "Fifth Edition",
-    "url": "ed5"
+    "url": "e5"
   },
   {
     "name": "Fourth Edition",
-    "url": ""
+    "url": "e4"
   },
   {
     "name": "Revised Edition",
-    "url": ""
+    "url": "r"
   },
   {
     "name": "Unlimited Edition",
-    "url": ""
+    "url": "u"
   },
   {
     "name": "Limited Edition Beta",
-    "url": ""
+    "url": "b"
   },
   {
     "name": "Limited Edition Alpha",
-    "url": ""
+    "url": "a"
   }
 ]

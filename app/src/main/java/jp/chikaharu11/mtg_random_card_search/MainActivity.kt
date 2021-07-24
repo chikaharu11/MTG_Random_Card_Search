@@ -12,6 +12,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 import com.google.gson.Gson
 import java.net.URL
 import java.util.*
@@ -82,6 +85,12 @@ class MainActivity : AppCompatActivity() {
                 return false
             }
         }
+
+        MobileAds.initialize(this) {}
+
+        val adView = findViewById<AdView>(R.id.adView)
+        val adRequest = AdRequest.Builder().build()
+        adView.loadAd(adRequest)
 
         val edittext = findViewById<EditText>(R.id.searchText)
 
