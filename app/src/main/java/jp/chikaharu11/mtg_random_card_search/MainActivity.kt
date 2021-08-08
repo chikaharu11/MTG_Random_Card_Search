@@ -47,7 +47,8 @@ class MainActivity : AppCompatActivity() {
     private var jaName2 = ""
     private var enName2 = ""
 
-    private var apiURL = ""
+    private lateinit var apiURL : JSONObject
+    private var apiURLimage = ""
 
     private val locale: Locale = Locale.getDefault()
 
@@ -1241,13 +1242,13 @@ class MainActivity : AppCompatActivity() {
             thread {
                 try {
                     val api = URL(edittext.text.toString()).readText()
-                    val json = JSONObject(api)
-                    apiURL = json.getJSONObject("image_uris").getString("normal")
+                    apiURL = JSONObject(api)
+                    apiURLimage = apiURL.getJSONObject("image_uris").getString("normal")
                 } catch (e: Exception) {
                     return@thread
                 }
             }.join()
-            webView.loadUrl(apiURL)
+            webView.loadUrl(apiURLimage)
         }
         button2.setOnClickListener{
             when {
@@ -1280,10 +1281,11 @@ class MainActivity : AppCompatActivity() {
                 .show()
         }
         button4.setOnClickListener{
-            val engName = webView.url?.replaceBeforeLast("/","")?.replace("/","")
+
             thread {
                 try {
-                    val api = URL("https://api.scryfall.com/cards/search?q=!$engName lang:ja").readText()
+                    val name = apiURL.getString("name").replace(" ","-").lowercase(Locale.getDefault())
+                    val api = URL("https://api.scryfall.com/cards/search?q=!$name lang:ja").readText()
 
                     val jaName = api.replaceBeforeLast("\"printed_name\":\"","").replace("\"printed_name\":\"","").replaceAfterLast("\",\"lang\":\"ja\"","").replace("\",\"lang\":\"ja\"","/")
                     val enName = api.replaceBeforeLast("\"name\":\"","").replace("\"name\":\"","").replaceAfterLast("\",\"printed_name\":\"","").replace("\",\"printed_name\":\"","")
@@ -1291,7 +1293,8 @@ class MainActivity : AppCompatActivity() {
                     jaName2 = jaName
                     enName2 = enName
                 } catch (e: Exception) {
-                    val api = URL("https://api.scryfall.com/cards/search?q=!$engName").readText()
+                    val name = apiURL.getString("name").replace(" ","-").lowercase(Locale.getDefault())
+                    val api = URL("https://api.scryfall.com/cards/search?q=!$name").readText()
 
                     val enName = api.replaceBeforeLast("\"name\":\"","").replace("\"name\":\"","").replaceAfterLast("\",\"lang\":\"en\"","").replace("\",\"lang\":\"en\"","")
 
