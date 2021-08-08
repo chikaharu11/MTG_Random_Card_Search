@@ -12,7 +12,7 @@
     <string name="checkbox6">Enchantment</string>
     <string name="checkbox7">Land</string>
     <string name="checkbox16">Commander</string>
-    <string name="name">https://scryfall.com/random?q=</string>
+    <string name="name">https://api.scryfall.com/cards/random?q=</string>
     <string name="checkbox8">W</string>
     <string name="checkbox9">U</string>
     <string name="checkbox10">B</string>
