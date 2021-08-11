@@ -50,6 +50,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var apiURL : JSONObject
     private var apiURLimage = ""
+    private var apiURLimage2 = ""
 
     private val locale: Locale = Locale.getDefault()
 
@@ -61,9 +62,11 @@ class MainActivity : AppCompatActivity() {
 
         val webView = findViewById<WebView>(R.id.webView)
         val webView2 = findViewById<WebView>(R.id.webView2)
+        val webView3 = findViewById<WebView>(R.id.webView3)
         val layoutView =findViewById<ConstraintLayout>(R.id.layoutView)
 
         webView.settings.loadWithOverviewMode = true
+        webView.settings.displayZoomControls = false
         webView.settings.builtInZoomControls = true
         webView.settings.javaScriptEnabled = true
         webView.settings.useWideViewPort = true
@@ -80,20 +83,39 @@ class MainActivity : AppCompatActivity() {
 
         webView.setOnTouchListener { _, event ->
             if (event.action == MotionEvent.ACTION_DOWN) {
-                thread {
-                    val json = URL("https://api.scryfall.com/cards/search?q=Delver of Secrets").readText()
-                    val jsonObject = JSONObject(json)
-                    val data = jsonObject.getJSONArray("data").getJSONObject(0)
-                    val cardFaces = data.getJSONArray("card_faces").getJSONObject(1)
-                    val imageUris = cardFaces.getJSONObject("image_uris").getString("normal")
-                    println(imageUris)
-                }
+                webView.visibility = View.INVISIBLE
+                webView3.visibility = View.VISIBLE
+            }
+            false
+        }
+
+        webView3.settings.loadWithOverviewMode = true
+        webView3.settings.displayZoomControls = false
+        webView3.settings.builtInZoomControls = true
+        webView3.settings.javaScriptEnabled = true
+        webView3.settings.useWideViewPort = true
+        webView3.loadUrl("file:///android_asset/card_back.html")
+
+        webView3.webViewClient = object : WebViewClient() {
+            override fun shouldOverrideUrlLoading(
+                view: WebView?,
+                request: WebResourceRequest?,
+            ): Boolean {
+                return false
+            }
+        }
+
+        webView3.setOnTouchListener { _, event ->
+            if (event.action == MotionEvent.ACTION_DOWN) {
+                webView.visibility = View.VISIBLE
+                webView3.visibility = View.INVISIBLE
             }
             false
         }
 
 
         webView2.settings.loadWithOverviewMode = true
+        webView2.settings.displayZoomControls = false
         webView2.settings.builtInZoomControls = true
         webView2.settings.javaScriptEnabled = true
         webView2.settings.useWideViewPort = true
@@ -1255,16 +1277,28 @@ class MainActivity : AppCompatActivity() {
             webView.visibility = View.VISIBLE
             webView2.visibility = View.INVISIBLE
 
+            webView.loadUrl("file:///android_asset/card_back.html")
+            webView3.loadUrl("file:///android_asset/card_back.html")
+
             thread {
                 try {
                     val api = URL(searchtext.text.toString()).readText()
+                    println(searchtext.text.toString())
                     apiURL = JSONObject(api)
                     apiURLimage = apiURL.getJSONObject("image_uris").getString("normal")
+                    apiURLimage2 = "file:///android_asset/card_back.html"
                 } catch (e: Exception) {
-                    apiURLimage = ("file:///android_asset/card_back.html")
+                    val api = URL(searchtext.text.toString()).readText()
+                    apiURL = JSONObject(api)
+                    val data = apiURL.getJSONArray("data").getJSONObject(0)
+                    val cardFaces = data.getJSONArray("card_faces").getJSONObject(0)
+                    val cardFaces2 = data.getJSONArray("card_faces").getJSONObject(1)
+                    apiURLimage = cardFaces.getJSONObject("image_uris").getString("normal")
+                    apiURLimage2 = cardFaces2.getJSONObject("image_uris").getString("normal")
                 }
             }.join()
             webView.loadUrl(apiURLimage)
+            webView3.loadUrl(apiURLimage2)
         }
         button2.setOnClickListener{
             when {
@@ -1297,7 +1331,6 @@ class MainActivity : AppCompatActivity() {
                 .show()
         }
         button4.setOnClickListener{
-
             thread {
                 try {
                     val name = apiURL.getString("name").replace(" ","-").lowercase(Locale.getDefault())
