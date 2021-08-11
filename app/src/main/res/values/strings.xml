@@ -31,4 +31,5 @@
     <string name="checkbox17">Reset</string>
     <string name="textview3">Core Set</string>
     <string name="checkbox18">Vanguard</string>
+    <string name="error">Could not open the wiki.</string>
 </resources>

@@ -1284,19 +1284,18 @@ class MainActivity : AppCompatActivity() {
             thread {
                 try {
                     val api = URL(searchtext.text.toString()).readText()
-                    println(searchtext.text.toString())
                     apiURL = JSONObject(api)
-                    apiName = apiURL.getString("name")
+                    println(apiURL.toString(4))
                     apiURLimage = apiURL.getJSONObject("image_uris").getString("normal")
+                    apiName = apiURL.getString("name")
+                    println(apiName)
                     apiURLimage2 = "file:///android_asset/card_back.html"
                 } catch (e: Exception) {
                     try {
-                        val api = URL(searchtext.text.toString()).readText()
-                        apiURL = JSONObject(api)
-                        val data = apiURL.getJSONArray("data").getJSONObject(0)
-                        val cardFaces = data.getJSONArray("card_faces").getJSONObject(0)
-                        val cardFaces2 = data.getJSONArray("card_faces").getJSONObject(1)
+                        val cardFaces = apiURL.getJSONArray("card_faces").getJSONObject(0)
+                        val cardFaces2 = apiURL.getJSONArray("card_faces").getJSONObject(1)
                         apiName = cardFaces.getString("name")
+                        println(apiName)
                         apiURLimage = cardFaces.getJSONObject("image_uris").getString("normal")
                         apiURLimage2 = cardFaces2.getJSONObject("image_uris").getString("normal")
 
@@ -1363,7 +1362,7 @@ class MainActivity : AppCompatActivity() {
                         jaName2 = ""
                         enName2 = enName
                     } catch (e: Exception) {
-
+                        Toast.makeText(applicationContext, R.string.error, Toast.LENGTH_LONG).show()
                     }
                 }
             }.join()
