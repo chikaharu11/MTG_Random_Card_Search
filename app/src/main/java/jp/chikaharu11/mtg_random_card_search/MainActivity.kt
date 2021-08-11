@@ -2,7 +2,6 @@ package jp.chikaharu11.mtg_random_card_search
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.webkit.WebResourceRequest
@@ -81,7 +80,14 @@ class MainActivity : AppCompatActivity() {
 
         webView.setOnTouchListener { _, event ->
             if (event.action == MotionEvent.ACTION_DOWN) {
-                val hoge = URL("https://api.scryfall.com/cards/search?q=Delver of Secrets").readText()
+                thread {
+                    val json = URL("https://api.scryfall.com/cards/search?q=Delver of Secrets").readText()
+                    val jsonObject = JSONObject(json)
+                    val data = jsonObject.getJSONArray("data").getJSONObject(0)
+                    val cardFaces = data.getJSONArray("card_faces").getJSONObject(1)
+                    val imageUris = cardFaces.getJSONObject("image_uris").getString("normal")
+                    println(imageUris)
+                }
             }
             false
         }
