@@ -1273,7 +1273,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        button.setOnClickListener{
+        button.setOnClickListener {
             layoutView.visibility = View.INVISIBLE
             webView.visibility = View.VISIBLE
             webView2.visibility = View.INVISIBLE
@@ -1290,14 +1290,20 @@ class MainActivity : AppCompatActivity() {
                     apiURLimage = apiURL.getJSONObject("image_uris").getString("normal")
                     apiURLimage2 = "file:///android_asset/card_back.html"
                 } catch (e: Exception) {
-                    val api = URL(searchtext.text.toString()).readText()
-                    apiURL = JSONObject(api)
-                    val data = apiURL.getJSONArray("data").getJSONObject(0)
-                    val cardFaces = data.getJSONArray("card_faces").getJSONObject(0)
-                    val cardFaces2 = data.getJSONArray("card_faces").getJSONObject(1)
-                    apiName = cardFaces.getString("name")
-                    apiURLimage = cardFaces.getJSONObject("image_uris").getString("normal")
-                    apiURLimage2 = cardFaces2.getJSONObject("image_uris").getString("normal")
+                    try {
+                        val api = URL(searchtext.text.toString()).readText()
+                        apiURL = JSONObject(api)
+                        val data = apiURL.getJSONArray("data").getJSONObject(0)
+                        val cardFaces = data.getJSONArray("card_faces").getJSONObject(0)
+                        val cardFaces2 = data.getJSONArray("card_faces").getJSONObject(1)
+                        apiName = cardFaces.getString("name")
+                        apiURLimage = cardFaces.getJSONObject("image_uris").getString("normal")
+                        apiURLimage2 = cardFaces2.getJSONObject("image_uris").getString("normal")
+
+                    } catch (e: Exception) {
+                        apiURLimage = "file:///android_asset/card_back.html"
+                        apiURLimage2 = "file:///android_asset/card_back.html"
+                    }
                 }
             }.join()
             webView.loadUrl(apiURLimage)
@@ -1345,15 +1351,20 @@ class MainActivity : AppCompatActivity() {
                     jaName2 = jaName
                     enName2 = enName
                 } catch (e: Exception) {
-                    val name = apiName.replace(" ","-").lowercase(Locale.getDefault())
-                    val api = URL("https://api.scryfall.com/cards/search?q=!$name").readText()
+                    try {
+                        val name = apiName.replace(" ", "-").lowercase(Locale.getDefault())
+                        val api = URL("https://api.scryfall.com/cards/search?q=!$name").readText()
 
-                    val enName = api.replaceBeforeLast("\"name\":\"","").replace("\"name\":\"","").replaceAfterLast("\",\"lang\":\"en\"","").replace("\",\"lang\":\"en\"","")
+                        val enName =
+                            api.replaceBeforeLast("\"name\":\"", "").replace("\"name\":\"", "")
+                                .replaceAfterLast("\",\"lang\":\"en\"", "")
+                                .replace("\",\"lang\":\"en\"", "")
 
-                    jaName2 = ""
-                    enName2 = enName
-                } finally {
-                    return@thread
+                        jaName2 = ""
+                        enName2 = enName
+                    } catch (e: Exception) {
+
+                    }
                 }
             }.join()
 
