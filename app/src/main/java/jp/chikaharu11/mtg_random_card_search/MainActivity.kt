@@ -51,6 +51,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var apiURL : JSONObject
     private var apiURLimage = ""
     private var apiURLimage2 = ""
+    private var apiName = ""
 
     private val locale: Locale = Locale.getDefault()
 
@@ -1285,6 +1286,7 @@ class MainActivity : AppCompatActivity() {
                     val api = URL(searchtext.text.toString()).readText()
                     println(searchtext.text.toString())
                     apiURL = JSONObject(api)
+                    apiName = apiURL.getString("name")
                     apiURLimage = apiURL.getJSONObject("image_uris").getString("normal")
                     apiURLimage2 = "file:///android_asset/card_back.html"
                 } catch (e: Exception) {
@@ -1293,6 +1295,7 @@ class MainActivity : AppCompatActivity() {
                     val data = apiURL.getJSONArray("data").getJSONObject(0)
                     val cardFaces = data.getJSONArray("card_faces").getJSONObject(0)
                     val cardFaces2 = data.getJSONArray("card_faces").getJSONObject(1)
+                    apiName = cardFaces.getString("name")
                     apiURLimage = cardFaces.getJSONObject("image_uris").getString("normal")
                     apiURLimage2 = cardFaces2.getJSONObject("image_uris").getString("normal")
                 }
@@ -1333,7 +1336,7 @@ class MainActivity : AppCompatActivity() {
         button4.setOnClickListener{
             thread {
                 try {
-                    val name = apiURL.getString("name").replace(" ","-").lowercase(Locale.getDefault())
+                    val name = apiName.replace(" ","-").lowercase(Locale.getDefault())
                     val api = URL("https://api.scryfall.com/cards/search?q=!$name lang:ja").readText()
 
                     val jaName = api.replaceBeforeLast("\"printed_name\":\"","").replace("\"printed_name\":\"","").replaceAfterLast("\",\"lang\":\"ja\"","").replace("\",\"lang\":\"ja\"","/")
@@ -1342,7 +1345,7 @@ class MainActivity : AppCompatActivity() {
                     jaName2 = jaName
                     enName2 = enName
                 } catch (e: Exception) {
-                    val name = apiURL.getString("name").replace(" ","-").lowercase(Locale.getDefault())
+                    val name = apiName.replace(" ","-").lowercase(Locale.getDefault())
                     val api = URL("https://api.scryfall.com/cards/search?q=!$name").readText()
 
                     val enName = api.replaceBeforeLast("\"name\":\"","").replace("\"name\":\"","").replaceAfterLast("\",\"lang\":\"en\"","").replace("\",\"lang\":\"en\"","")
