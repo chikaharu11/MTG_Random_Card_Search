@@ -171,7 +171,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="@string/checkbox18"
-            app:layout_constraintBottom_toTopOf="@+id/searchText"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/checkBox7"
             tools:ignore="MissingConstraints" />
