@@ -1274,12 +1274,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         button.setOnClickListener {
-            layoutView.visibility = View.INVISIBLE
-            webView.visibility = View.VISIBLE
-            webView2.visibility = View.INVISIBLE
-
-            webView.loadUrl("file:///android_asset/card_back.html")
-            webView3.loadUrl("file:///android_asset/card_back.html")
 
             thread {
                 try {
@@ -1305,8 +1299,22 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
             }.join()
+            webView.settings.loadWithOverviewMode = true
+            webView.settings.displayZoomControls = false
+            webView.settings.builtInZoomControls = true
+            webView.settings.javaScriptEnabled = true
+            webView.settings.useWideViewPort = true
+            webView3.settings.loadWithOverviewMode = true
+            webView3.settings.displayZoomControls = false
+            webView3.settings.builtInZoomControls = true
+            webView3.settings.javaScriptEnabled = true
+            webView3.settings.useWideViewPort = true
             webView.loadUrl(apiURLimage)
             webView3.loadUrl(apiURLimage2)
+            layoutView.visibility = View.INVISIBLE
+            webView.visibility = View.VISIBLE
+            webView3.visibility = View.VISIBLE
+            webView2.visibility = View.INVISIBLE
         }
         button2.setOnClickListener{
             when {
@@ -1343,11 +1351,13 @@ class MainActivity : AppCompatActivity() {
                 try {
                     val name = apiName.replace(" ","-").lowercase(Locale.getDefault())
                     val api = URL("https://api.scryfall.com/cards/search?q=!$name lang:ja").readText()
+                    val json = JSONObject(api)
+                    val data = json.getJSONArray("data").getJSONObject(0)
+                    val cardFaces = data.getJSONArray("card_faces").getJSONObject(0)
+                    val jaName = cardFaces.getString("printed_name")
+                    val enName = cardFaces.getString("name")
 
-                    val jaName = api.replaceBeforeLast("\"printed_name\":\"","").replace("\"printed_name\":\"","").replaceAfterLast("\",\"lang\":\"ja\"","").replace("\",\"lang\":\"ja\"","/")
-                    val enName = api.replaceBeforeLast("\"name\":\"","").replace("\"name\":\"","").replaceAfterLast("\",\"printed_name\":\"","").replace("\",\"printed_name\":\"","")
-
-                    jaName2 = jaName
+                    jaName2 = "$jaName/"
                     enName2 = enName
                 } catch (e: Exception) {
                     try {
