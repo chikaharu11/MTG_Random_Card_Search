@@ -67,9 +67,6 @@ class MainActivity : AppCompatActivity() {
         val layoutView =findViewById<ConstraintLayout>(R.id.layoutView)
 
         webView.settings.loadWithOverviewMode = true
-        webView.settings.displayZoomControls = false
-        webView.settings.builtInZoomControls = true
-        webView.settings.javaScriptEnabled = true
         webView.settings.useWideViewPort = true
         webView.loadUrl("file:///android_asset/card_back.html")
 
@@ -91,9 +88,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         webView3.settings.loadWithOverviewMode = true
-        webView3.settings.displayZoomControls = false
-        webView3.settings.builtInZoomControls = true
-        webView3.settings.javaScriptEnabled = true
         webView3.settings.useWideViewPort = true
         webView3.loadUrl("file:///android_asset/card_back.html")
 
@@ -1299,21 +1293,11 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
             }.join()
-            webView.settings.loadWithOverviewMode = true
-            webView.settings.displayZoomControls = false
-            webView.settings.builtInZoomControls = true
-            webView.settings.javaScriptEnabled = true
-            webView.settings.useWideViewPort = true
-            webView3.settings.loadWithOverviewMode = true
-            webView3.settings.displayZoomControls = false
-            webView3.settings.builtInZoomControls = true
-            webView3.settings.javaScriptEnabled = true
-            webView3.settings.useWideViewPort = true
             webView.loadUrl(apiURLimage)
             webView3.loadUrl(apiURLimage2)
             layoutView.visibility = View.INVISIBLE
             webView.visibility = View.VISIBLE
-            webView3.visibility = View.VISIBLE
+            webView3.visibility = View.INVISIBLE
             webView2.visibility = View.INVISIBLE
         }
         button2.setOnClickListener{
@@ -1328,6 +1312,11 @@ class MainActivity : AppCompatActivity() {
                 webView.isVisible -> {
                     webView.visibility = View.INVISIBLE
                     layoutView.visibility = View.VISIBLE
+                }
+                webView3.isVisible -> {
+                    webView.visibility = View.VISIBLE
+                    webView3.visibility = View.INVISIBLE
+                    layoutView.visibility = View.INVISIBLE
                 }
                 webView.isInvisible -> {
                     webView.visibility = View.VISIBLE
@@ -1349,8 +1338,8 @@ class MainActivity : AppCompatActivity() {
         button4.setOnClickListener{
             thread {
                 try {
-                    val name = apiName.replace(" ","-").lowercase(Locale.getDefault())
-                    val api = URL("https://api.scryfall.com/cards/search?q=!$name lang:ja").readText()
+                    val name = apiName.replace(" ", "-").lowercase(Locale.getDefault())
+                    val api = URL("https://api.scryfall.com/cards/search?q=!$name%20lang:ja").readText()
                     val json = JSONObject(api)
                     val data = json.getJSONArray("data").getJSONObject(0)
                     val cardFaces = data.getJSONArray("card_faces").getJSONObject(0)
@@ -1362,23 +1351,35 @@ class MainActivity : AppCompatActivity() {
                 } catch (e: Exception) {
                     try {
                         val name = apiName.replace(" ", "-").lowercase(Locale.getDefault())
-                        val api = URL("https://api.scryfall.com/cards/search?q=!$name").readText()
+                        val api = URL("https://api.scryfall.com/cards/search?q=!$name%20lang:ja").readText()
+                        val json = JSONObject(api)
+                        val data = json.getJSONArray("data").getJSONObject(0)
+                        val jaName = data.getString("printed_name")
+                        val enName = data.getString("name")
 
-                        val enName =
-                            api.replaceBeforeLast("\"name\":\"", "").replace("\"name\":\"", "")
-                                .replaceAfterLast("\",\"lang\":\"en\"", "")
-                                .replace("\",\"lang\":\"en\"", "")
-
-                        jaName2 = ""
+                        jaName2 = "$jaName/"
                         enName2 = enName
                     } catch (e: Exception) {
-                        Toast.makeText(applicationContext, R.string.error, Toast.LENGTH_LONG).show()
+                        try {
+                            val name = apiName.replace(" ", "-").lowercase(Locale.getDefault())
+                            val api = URL("https://api.scryfall.com/cards/search?q=!$name").readText()
+                            val json = JSONObject(api)
+                            val data = json.getJSONArray("data").getJSONObject(0)
+                            val enName = data.getString("name")
+
+                            jaName2 = ""
+                            enName2 = enName
+                        } catch (e: Exception) {
+                            Toast.makeText(applicationContext, R.string.error, Toast.LENGTH_LONG)
+                                .show()
+                        }
                     }
                 }
             }.join()
 
             layoutView.visibility = View.INVISIBLE
             webView2.visibility = View.VISIBLE
+            webView3.visibility = View.INVISIBLE
             if (locale == Locale.JAPAN) {
                 webView2.loadUrl("http://m.mtgwiki.com/wiki/$jaName2${enName2.replace(" ", "_")}")
             } else {
