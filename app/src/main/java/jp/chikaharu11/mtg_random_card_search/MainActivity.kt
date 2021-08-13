@@ -68,6 +68,7 @@ class MainActivity : AppCompatActivity() {
 
         webView.settings.loadWithOverviewMode = true
         webView.settings.useWideViewPort = true
+        webView.setInitialScale(1)
         webView.loadUrl("file:///android_asset/card_back.html")
 
         webView.webViewClient = object : WebViewClient() {
@@ -89,6 +90,7 @@ class MainActivity : AppCompatActivity() {
 
         webView3.settings.loadWithOverviewMode = true
         webView3.settings.useWideViewPort = true
+        webView3.setInitialScale(1)
         webView3.loadUrl("file:///android_asset/card_back.html")
 
         webView3.webViewClient = object : WebViewClient() {
@@ -1293,6 +1295,8 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
             }.join()
+            webView.setInitialScale(1)
+            webView3.setInitialScale(1)
             webView.loadUrl(apiURLimage)
             webView3.loadUrl(apiURLimage2)
             layoutView.visibility = View.INVISIBLE
