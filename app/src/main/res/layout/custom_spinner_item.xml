@@ -8,20 +8,18 @@
     tools:ignore="UseCompoundDrawables">
 
     <ImageView
-        android:id="@+id/img"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:contentDescription="@string/app_name" />
+        android:id="@+id/moodImage"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        tools:ignore="ContentDescription" />
 
     <TextView
-        android:id="@+id/text"
+        android:id="@+id/moodText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:paddingStart="10dp"
         android:textSize="14sp"
-        tools:ignore="RtlSymmetry"
-        android:textColor="#5171A5"
-        android:paddingLeft="0dp" />
+        tools:ignore="RtlSymmetry" />
 
 </LinearLayout>

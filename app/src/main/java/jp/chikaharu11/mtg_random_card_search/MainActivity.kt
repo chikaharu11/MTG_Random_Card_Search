@@ -16,13 +16,15 @@ import androidx.core.view.isVisible
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
-import com.google.gson.Gson
+import jp.chikaharu11.mtg_random_card_search.databinding.ActivityMainBinding
 import org.json.JSONObject
 import java.net.URL
 import java.util.*
 import kotlin.concurrent.thread
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
 
     private var type = ""
     private var type2 = ""
@@ -59,7 +61,8 @@ class MainActivity : AppCompatActivity() {
     @SuppressLint("SetJavaScriptEnabled", "SetTextI18n", "ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+            .apply { setContentView(this.root) }
 
         val webView = findViewById<WebView>(R.id.webView)
         val webView2 = findViewById<WebView>(R.id.webView2)
@@ -173,53 +176,6 @@ class MainActivity : AppCompatActivity() {
         val spinner2 = findViewById<Spinner>(R.id.spinner2)
         val spinner3 = findViewById<Spinner>(R.id.spinner3)
 
-        fun readFromAsset(): List<Model> {
-            val filename = "android_version.json"
-
-            val bufferReader = application.assets.open(filename).bufferedReader()
-
-            val jsonstring = bufferReader.use {
-                it.readText()
-            }
-            val gson = Gson()
-            return gson.fromJson(jsonstring, Array<Model>::class.java).toList()
-        }
-
-        val modelList: List<Model> = readFromAsset()
-
-        val customDropDownAdapter = CustomDropDownAdapter(this, modelList)
-
-        fun readFromAsset2(): List<Model> {
-            val filename2 = "android_version2.json"
-
-            val bufferReader = application.assets.open(filename2).bufferedReader()
-
-            val jsonstring2 = bufferReader.use {
-                it.readText()
-            }
-            val gson = Gson()
-            return gson.fromJson(jsonstring2, Array<Model>::class.java).toList()
-        }
-
-        val modelList2: List<Model> = readFromAsset2()
-
-        val customDropDownAdapter2 = CustomDropDownAdapter(this, modelList2)
-
-        fun readFromAsset3(): List<Model> {
-            val filename3 = "android_version3.json"
-
-            val bufferReader = application.assets.open(filename3).bufferedReader()
-
-            val jsonstring3 = bufferReader.use {
-                it.readText()
-            }
-            val gson = Gson()
-            return gson.fromJson(jsonstring3, Array<Model>::class.java).toList()
-        }
-
-        val modelList3: List<Model> = readFromAsset3()
-
-        val customDropDownAdapter3 = CustomDropDownAdapter(this, modelList3)
 
         fun check(){
             if (!checkbox.isChecked &&
@@ -264,17 +220,30 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        val spinnerItems = if (locale == Locale.JAPAN) {
-            arrayOf("指定しない", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17以上" )
-        } else {
-            arrayOf("No specified", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17 or more" )
-        }
-
-        val adapter = ArrayAdapter(this, R.layout.spinner_item, spinnerItems)
-
-        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item)
-
-        spinner.adapter = customDropDownAdapter3
+        binding.spinner.adapter = ModelArrayAdapter(
+            this,
+            listOf(
+                Model(R.drawable.transparent, "No specified"),
+                Model(R.drawable.c0, "0"),
+                Model(R.drawable.c1, "1"),
+                Model(R.drawable.c2, "2"),
+                Model(R.drawable.c3, "3"),
+                Model(R.drawable.c4, "4"),
+                Model(R.drawable.c5, "5"),
+                Model(R.drawable.c6, "6"),
+                Model(R.drawable.c7, "7"),
+                Model(R.drawable.c8, "8"),
+                Model(R.drawable.c9, "9"),
+                Model(R.drawable.c10, "10"),
+                Model(R.drawable.c11, "11"),
+                Model(R.drawable.c12, "12"),
+                Model(R.drawable.c13, "13"),
+                Model(R.drawable.c14, "14"),
+                Model(R.drawable.c15, "15"),
+                Model(R.drawable.c16, "16"),
+                Model(R.drawable.c17, "17")
+            )
+        )
 
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
 
@@ -356,23 +325,55 @@ class MainActivity : AppCompatActivity() {
         }
         spinner.isFocusable = false
 
-        val spinnerItems2 = if (locale == Locale.JAPAN) {
-            arrayOf("指定しない                        ", "Standard", "Future", "Historic", "Gladiator", "Pioneer", "Modern", "Legacy", "Pauper", "Vintage", "Penny", "Commander",
-                "Brawl", "Duel", "Oldschool", "Premodern", "Guilds of Ravnica", "Ixalan", "Amonkhet", "Kaladesh", "Shadows over Innistrad", "Battle for Zendikar", "Khans of Tarkir", "Theros",
-                "Return to Ravnica", "Innistrad", "Scars of Mirrodin", "Zendikar", "Alara", "Shadowmoor", "Lorwyn", "Time Spiral", "Ravnica", "Kamigawa", "Mirrodin", "Onslaught", "Odyssey",
-                "Invasion", "Masques", "Urza", "Tempest", "Mirage", "Ice Age", "Old Expansion")
-        } else {
-            arrayOf("No specified                        ", "Standard", "Future", "Historic", "Gladiator", "Pioneer", "Modern", "Legacy", "Pauper", "Vintage", "Penny", "Commander",
-                "Brawl", "Duel", "Oldschool", "Premodern", "Guilds of Ravnica", "Ixalan", "Amonkhet", "Kaladesh", "Shadows over Innistrad", "Battle for Zendikar", "Khans of Tarkir", "Theros",
-                "Return to Ravnica", "Innistrad", "Scars of Mirrodin", "Zendikar", "Alara", "Shadowmoor", "Lorwyn", "Time Spiral", "Ravnica", "Kamigawa", "Mirrodin", "Onslaught", "Odyssey",
-                "Invasion", "Masques", "Urza", "Tempest", "Mirage", "Ice Age", "Old Expansion")
-        }
-
-        val adapter2 = ArrayAdapter(this, R.layout.spinner_item, spinnerItems2)
-
-        adapter2.setDropDownViewResource(R.layout.spinner_dropdown_item)
-
-        spinner2.adapter = customDropDownAdapter
+        binding.spinner2.adapter = ModelArrayAdapter(
+            this,
+            listOf(
+                Model(R.drawable.transparent, "No specified                        "),
+                Model(R.drawable.transparent, "Standard"),
+                Model(R.drawable.transparent, "Future"),
+                Model(R.drawable.transparent, "Historic"),
+                Model(R.drawable.transparent, "Gladiator"),
+                Model(R.drawable.transparent, "Pioneer"),
+                Model(R.drawable.transparent, "Modern"),
+                Model(R.drawable.transparent, "Legacy"),
+                Model(R.drawable.transparent, "Pauper"),
+                Model(R.drawable.transparent, "Vintage"),
+                Model(R.drawable.transparent, "Penny"),
+                Model(R.drawable.transparent, "Commander"),
+                Model(R.drawable.transparent, "Brawl"),
+                Model(R.drawable.transparent, "Duel"),
+                Model(R.drawable.transparent, "Oldschool"),
+                Model(R.drawable.transparent, "Premodern"),
+                Model(R.drawable.grn, "Guilds of Ravnica Block"),
+                Model(R.drawable.xln, "Ixalan Block"),
+                Model(R.drawable.akh, "Amonkhet Block"),
+                Model(R.drawable.kld, "Kaladesh Block"),
+                Model(R.drawable.soi, "Shadows over Innistrad Block"),
+                Model(R.drawable.bfz, "Battle for Zendikar Block"),
+                Model(R.drawable.ktk, "Khans of Tarkir Block"),
+                Model(R.drawable.ths, "Theros Block"),
+                Model(R.drawable.rtr, "Return to Ravnica Block"),
+                Model(R.drawable.isd, "Innistrad Block"),
+                Model(R.drawable.som, "Scars of Mirrodin Block"),
+                Model(R.drawable.zen, "Zendikar Block"),
+                Model(R.drawable.ala, "Alara Block"),
+                Model(R.drawable.shm, "Shadowmoor Block"),
+                Model(R.drawable.lrw, "Lorwyn Block"),
+                Model(R.drawable.tsp, "Time Spiral Block"),
+                Model(R.drawable.rav, "Ravnica Block"),
+                Model(R.drawable.chk, "Kamigawa Block"),
+                Model(R.drawable.mrd, "Mirrodin Block"),
+                Model(R.drawable.ons, "Onslaught Block"),
+                Model(R.drawable.ody, "Odyssey Block"),
+                Model(R.drawable.inv, "Invasion Block"),
+                Model(R.drawable.mmq, "Masques Block"),
+                Model(R.drawable.usg, "Urza Block"),
+                Model(R.drawable.tmp, "Tempest Block"),
+                Model(R.drawable.mir, "Mirage Block"),
+                Model(R.drawable.ice, "Ice Age Block"),
+                Model(R.drawable.transparent, "Old Expansion")
+            )
+        )
 
         spinner2.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
 
@@ -530,63 +531,33 @@ class MainActivity : AppCompatActivity() {
         }
         spinner2.isFocusable = false
 
-        val spinnerItems3 = if (locale == Locale.JAPAN) {
-            arrayOf(
-                "含めない",
-                "Core Set 2021 (M21)",
-                "Core Set 2020 (M20)",
-                "Core Set 2019 (M19)",
-                "Magic Origins (ORI)",
-                "Magic 2015 (M15)",
-                "Magic 2014 (M14)",
-                "Magic 2013 (M13)",
-                "Magic 2012 (M12)",
-                "Magic 2011 (M11)",
-                "Magic 2010 (M10)",
-                "Tenth Edition (10E)",
-                "Ninth Edition (9ED)",
-                "Eighth Edition (8ED)",
-                "Seventh Edition (7ED)",
-                "Classic Sixth Edition (6ED)",
-                "Fifth Edition (5ED)",
-                "Fourth Edition (4ED)",
-                "Revised Edition (3ED)",
-                "Unlimited Edition (2ED)",
-                "Limited Edition Beta (LEB)",
-                "Limited Edition Alpha (LEA)"
+        binding.spinner3.adapter = ModelArrayAdapter(
+            this,
+            listOf(
+                Model(R.drawable.transparent, "No including"),
+                Model(R.drawable.c0, "Core Set 2021 (M21)"),
+                Model(R.drawable.c1, "Core Set 2020 (M20)"),
+                Model(R.drawable.c2, "Core Set 2019 (M19)"),
+                Model(R.drawable.c3, "Magic Origins (ORI)"),
+                Model(R.drawable.c4, "Magic 2015 (M15)"),
+                Model(R.drawable.c5, "Magic 2014 (M14)"),
+                Model(R.drawable.c6, "Magic 2013 (M13)"),
+                Model(R.drawable.c7, "Magic 2012 (M12)"),
+                Model(R.drawable.c8, "Magic 2011 (M11)"),
+                Model(R.drawable.c9, "Magic 2010 (M10)"),
+                Model(R.drawable.c10, "Tenth Edition (10E)"),
+                Model(R.drawable.c11, "Ninth Edition (9ED)"),
+                Model(R.drawable.c12, "Eighth Edition (8ED)"),
+                Model(R.drawable.c13, "Seventh Edition (7ED)"),
+                Model(R.drawable.c14, "Classic Sixth Edition (6ED)"),
+                Model(R.drawable.c15, "Fifth Edition (5ED)"),
+                Model(R.drawable.c16, "Fourth Edition (4ED)"),
+                Model(R.drawable.c17, "Revised Edition (3ED)"),
+                Model(R.drawable.c16, "Unlimited Edition (2ED)"),
+                Model(R.drawable.c16, "Limited Edition Beta (LEB)"),
+                Model(R.drawable.c16, "Limited Edition Alpha (LEA)")
             )
-        } else {
-            arrayOf(
-                "No including",
-                "Core Set 2021 (M21)",
-                "Core Set 2020 (M20)",
-                "Core Set 2019 (M19)",
-                "Magic Origins (ORI)",
-                "Magic 2015 (M15)",
-                "Magic 2014 (M14)",
-                "Magic 2013 (M13)",
-                "Magic 2012 (M12)",
-                "Magic 2011 (M11)",
-                "Magic 2010 (M10)",
-                "Tenth Edition (10E)",
-                "Ninth Edition (9ED)",
-                "Eighth Edition (8ED)",
-                "Seventh Edition (7ED)",
-                "Classic Sixth Edition (6ED)",
-                "Fifth Edition (5ED)",
-                "Fourth Edition (4ED)",
-                "Revised Edition (3ED)",
-                "Unlimited Edition (2ED)",
-                "Limited Edition Beta (LEB)",
-                "Limited Edition Alpha (LEA)"
-            )
-        }
-
-        val adapter3 = ArrayAdapter(this, R.layout.spinner_item, spinnerItems3)
-
-        adapter3.setDropDownViewResource(R.layout.spinner_dropdown_item)
-
-        spinner3.adapter = customDropDownAdapter2
+        )
 
         spinner3.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
 
