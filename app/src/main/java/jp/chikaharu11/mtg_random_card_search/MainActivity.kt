@@ -223,7 +223,7 @@ class MainActivity : AppCompatActivity() {
         binding.spinner.adapter = ModelArrayAdapter(
             this,
             listOf(
-                Model(R.drawable.transparent, "No specified"),
+                Model(R.drawable.transparent, "Un specified"),
                 Model(R.drawable.c0, "0"),
                 Model(R.drawable.c1, "1"),
                 Model(R.drawable.c2, "2"),
@@ -328,7 +328,7 @@ class MainActivity : AppCompatActivity() {
         binding.spinner2.adapter = ModelArrayAdapter(
             this,
             listOf(
-                Model(R.drawable.transparent, "No specified                        "),
+                Model(R.drawable.transparent, "Un specified                        "),
                 Model(R.drawable.transparent, "Standard"),
                 Model(R.drawable.transparent, "Future"),
                 Model(R.drawable.transparent, "Historic"),
@@ -344,8 +344,11 @@ class MainActivity : AppCompatActivity() {
                 Model(R.drawable.transparent, "Duel"),
                 Model(R.drawable.transparent, "Oldschool"),
                 Model(R.drawable.transparent, "Premodern"),
+                Model(R.drawable.mid, "Innistrad: Midnight Hunt"),
+                Model(R.drawable.znr, "Zendikar Rising ~ Forgotten Realms"),
+                Model(R.drawable.eld, "Throne of Eldraine ~ Ikoria: Lair of Behemoths"),
                 Model(R.drawable.grn, "Guilds of Ravnica Block"),
-                Model(R.drawable.xln, "Ixalan Block"),
+                Model(R.drawable.xln, "Ixalan Block + Dominaria"),
                 Model(R.drawable.akh, "Amonkhet Block"),
                 Model(R.drawable.kld, "Kaladesh Block"),
                 Model(R.drawable.soi, "Shadows over Innistrad Block"),
@@ -433,87 +436,96 @@ class MainActivity : AppCompatActivity() {
                         "format:Premodern "
                     }
                     16 -> {
-                        "block:grn or "
+                        "set:mid or "
                     }
                     17 -> {
-                        "block:xln or "
+                        "set:afr or set:stx or set:khm or set:znr or "
                     }
                     18 -> {
-                        "block:akh or "
+                        "set:iko or set:thb or set:eld or "
                     }
                     19 -> {
-                        "block:kld or "
+                        "block:grn or "
                     }
                     20 -> {
-                        "block:soi or "
+                        "block:xln or set:dom or "
                     }
                     21 -> {
-                        "block:bfz or "
+                        "block:akh or "
                     }
                     22 -> {
-                        "block:ktk or "
+                        "block:kld or "
                     }
                     23 -> {
-                        "block:ths or "
+                        "block:soi or "
                     }
                     24 -> {
-                        "block:rtr or "
+                        "block:bfz or "
                     }
                     25 -> {
-                        "block:isd or "
+                        "block:ktk or "
                     }
                     26 -> {
-                        "block:som or "
+                        "block:ths or "
                     }
                     27 -> {
-                        "block:zen or "
+                        "block:rtr or "
                     }
                     28 -> {
-                        "block:ala or "
+                        "block:isd or "
                     }
                     29 -> {
-                        "block:shm or "
+                        "block:som or "
                     }
                     30 -> {
-                        "block:lrw or "
+                        "block:zen or "
                     }
                     31 -> {
-                        "block:tsp or "
+                        "block:ala or "
                     }
                     32 -> {
-                        "block:rav or "
+                        "block:shm or "
                     }
                     33 -> {
-                        "block:chk or "
+                        "block:lrw or "
                     }
                     34 -> {
-                        "block:mrd or "
+                        "block:tsp or "
                     }
                     35 -> {
-                        "block:ons or "
+                        "block:rav or "
                     }
                     36 -> {
-                        "block:ody or "
+                        "block:chk or "
                     }
                     37 -> {
-                        "block:inv or "
+                        "block:mrd or "
                     }
                     38 -> {
-                        "block:mmq or "
+                        "block:ons or "
                     }
                     39 -> {
-                        "block:usg or "
+                        "block:ody or "
                     }
                     40 -> {
-                        "block:tmp or "
+                        "block:inv or "
                     }
                     41 -> {
-                        "block:mir or "
+                        "block:mmq or "
                     }
                     42 -> {
-                        "block:ice or "
+                        "block:usg or "
                     }
                     43 -> {
+                        "block:tmp or "
+                    }
+                    44 -> {
+                        "block:mir or "
+                    }
+                    45 -> {
+                        "block:ice or "
+                    }
+                    46 -> {
                         "set:hml or set:fem or set:drk or set:leg or set:atq or set:arn or "
                     }
                     else -> {
@@ -534,7 +546,7 @@ class MainActivity : AppCompatActivity() {
         binding.spinner3.adapter = ModelArrayAdapter(
             this,
             listOf(
-                Model(R.drawable.transparent, "No including"),
+                Model(R.drawable.transparent, "Un including"),
                 Model(R.drawable.m21, "Core Set 2021 (M21)"),
                 Model(R.drawable.m20, "Core Set 2020 (M20)"),
                 Model(R.drawable.m19, "Core Set 2019 (M19)"),

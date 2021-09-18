@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MTG knowledge</string>
+    <string name="app_name">MTG card &amp; wiki Viewer</string>
     <string name="create">検索</string>
     <string name="back">戻る</string>
     <string name="exit">終了</string>

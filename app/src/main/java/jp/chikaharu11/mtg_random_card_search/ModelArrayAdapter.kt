@@ -30,8 +30,8 @@ class ModelArrayAdapter(ctx: Context,
             false
         )
 
-        model?.image?.let { view.findViewById<ImageView>(R.id.moodImage).setImageResource(it) }
-        view.findViewById<TextView>(R.id.moodText).text = model?.description
+        model?.image?.let { view.findViewById<ImageView>(R.id.modelImage).setImageResource(it) }
+        view.findViewById<TextView>(R.id.modelText).text = model?.description
 
         return view
     }
