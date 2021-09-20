@@ -5,22 +5,37 @@
     <item
         android:id="@+id/back"
         android:title="@string/back"
-        android:icon="@drawable/c0"
+        android:icon="@drawable/outline_arrow_back_ios_new_black_48dp"
         app:showAsAction="always"/>
+    <item
+        android:id="@+id/blank"
+        android:icon="@drawable/transparent"
+        android:title="@string/back"
+        app:showAsAction="always" />
     <item
         android:id="@+id/search"
         android:title="@string/search"
-        android:icon="@drawable/c1"
+        android:icon="@drawable/outline_search_black_48dp"
         app:showAsAction="always"/>
+    <item
+        android:id="@+id/blank2"
+        android:icon="@drawable/transparent"
+        android:title="@string/back"
+        app:showAsAction="always" />
     <item
         android:id="@+id/wiki"
         android:title="@string/wiki"
-        android:icon="@drawable/c2"
+        android:icon="@drawable/outline_feed_black_48dp"
         app:showAsAction="always"/>
+    <item
+        android:id="@+id/blank3"
+        android:icon="@drawable/transparent"
+        android:title="@string/back"
+        app:showAsAction="always" />
     <item
         android:id="@+id/exit"
         android:title="@string/exit"
-        android:icon="@drawable/c3"
+        android:icon="@drawable/outline_power_settings_new_black_48dp"
         app:showAsAction="always"
         tools:ignore="AlwaysShowAction" />
 </menu>
