@@ -1360,9 +1360,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val inflater: MenuInflater = menuInflater
         inflater.inflate(R.menu.menu_item, menu)
-        menu.getItem(1).isEnabled = false
-        menu.getItem(3).isEnabled = false
-        menu.getItem(5).isEnabled = false
 
         return true
     }
