@@ -8,14 +8,26 @@
         android:icon="@drawable/outline_arrow_back_ios_new_black_48dp"
         app:showAsAction="always"/>
     <item
+        android:title="@string/back"
+        android:icon="@drawable/blank"
+        app:showAsAction="always"/>
+    <item
         android:id="@+id/search"
         android:title="@string/search"
         android:icon="@drawable/outline_search_black_48dp"
         app:showAsAction="always"/>
     <item
+        android:title="@string/back"
+        android:icon="@drawable/blank"
+        app:showAsAction="always"/>
+    <item
         android:id="@+id/wiki"
         android:title="@string/wiki"
         android:icon="@drawable/outline_feed_black_48dp"
+        app:showAsAction="always"/>
+    <item
+        android:title="@string/back"
+        android:icon="@drawable/blank"
         app:showAsAction="always"/>
     <item
         android:id="@+id/exit"
