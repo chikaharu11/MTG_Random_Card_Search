@@ -9,19 +9,10 @@
         <item name="android:padding">24dp</item>
     </style>
     <style name="ToolbarTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:textColorPrimary">@color/purple_700</item>
-        <item name="android:textColorSecondary">@color/purple_500</item>
-        <item name="android:colorControlHighlight">@color/purple_500</item>
-    </style>
-
-    <style name="TextAppearance.Toolbar" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
-        <item name="android:textAllCaps">true</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textSize">20sp</item>
+        <item name="android:colorControlHighlight">#b3b3b3</item>
     </style>
 
     <style name="Toolbar" parent="@style/Widget.AppCompat.Toolbar">
     <item name="android:theme">@style/ToolbarTheme</item>
-    <item name="titleTextAppearance">@style/TextAppearance.Toolbar</item>
     </style>
 </resources>
