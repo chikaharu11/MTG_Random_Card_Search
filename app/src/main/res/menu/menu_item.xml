@@ -5,30 +5,30 @@
     <item
         android:id="@+id/back"
         android:title="@string/back"
-        android:icon="@drawable/outline_arrow_back_ios_new_black_48dp"
+        android:icon="@drawable/arrowleft"
         app:showAsAction="always"/>
     <item
-        android:title="@string/back"
-        android:icon="@drawable/blank"
-        app:showAsAction="always"/>
+        android:enabled="false"
+        app:showAsAction="always"
+        tools:ignore="MenuTitle" />
     <item
         android:id="@+id/search"
         android:title="@string/search"
         android:icon="@drawable/outline_search_black_48dp"
         app:showAsAction="always"/>
     <item
-        android:title="@string/back"
-        android:icon="@drawable/blank"
-        app:showAsAction="always"/>
+        android:enabled="false"
+        app:showAsAction="always"
+        tools:ignore="MenuTitle" />
     <item
         android:id="@+id/wiki"
         android:title="@string/wiki"
         android:icon="@drawable/outline_feed_black_48dp"
         app:showAsAction="always"/>
     <item
-        android:title="@string/back"
-        android:icon="@drawable/blank"
-        app:showAsAction="always"/>
+        android:enabled="false"
+        app:showAsAction="always"
+        tools:ignore="MenuTitle" />
     <item
         android:id="@+id/exit"
         android:title="@string/exit"

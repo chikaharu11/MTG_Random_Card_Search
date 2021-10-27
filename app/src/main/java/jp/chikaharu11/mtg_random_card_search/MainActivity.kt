@@ -2,6 +2,7 @@ package jp.chikaharu11.mtg_random_card_search
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.os.Handler
 import android.view.*
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
@@ -52,6 +53,8 @@ class MainActivity : AppCompatActivity() {
     private var apiURLimage = ""
     private var apiURLimage2 = ""
     private var apiName = ""
+
+    private val handler = Handler()
 
     private val locale: Locale = Locale.getDefault()
 
@@ -1465,8 +1468,12 @@ class MainActivity : AppCompatActivity() {
                                 jaName2 = ""
                                 enName2 = enName
                             } catch (e: Exception) {
-                                Toast.makeText(applicationContext, R.string.error, Toast.LENGTH_LONG)
-                                    .show()
+                                handler.post {
+                                    Toast.makeText(applicationContext,
+                                        R.string.error,
+                                        Toast.LENGTH_LONG)
+                                        .show()
+                                }
                             }
                         }
                     }
