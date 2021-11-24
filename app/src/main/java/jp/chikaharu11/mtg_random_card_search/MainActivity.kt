@@ -350,8 +350,8 @@ class MainActivity : AppCompatActivity() {
                 Model(R.drawable.transparent, "Duel"),
                 Model(R.drawable.transparent, "Oldschool"),
                 Model(R.drawable.transparent, "Premodern"),
-                Model(R.drawable.mid, "Innistrad: Midnight Hunt"),
-                Model(R.drawable.znr, "Zendikar Rising ~ Forgotten Realms"),
+                Model(R.drawable.mid, "Innistrad: Midnight Hunt ~ Innistrad: Crimson Vow"),
+                Model(R.drawable.znr, "Zendikar Rising ~ Strixhaven: School of Mages"),
                 Model(R.drawable.eld, "Throne of Eldraine ~ Ikoria: Lair of Behemoths"),
                 Model(R.drawable.grn, "Guilds of Ravnica Block"),
                 Model(R.drawable.xln, "Ixalan Block + Dominaria"),
@@ -447,10 +447,10 @@ class MainActivity : AppCompatActivity() {
                         "format:Premodern "
                     }
                     16 -> {
-                        "set:mid or "
+                        "set:mid or set:vow or "
                     }
                     17 -> {
-                        "set:afr or set:stx or set:khm or set:znr or "
+                        "set:stx or set:khm or set:znr or "
                     }
                     18 -> {
                         "set:iko or set:thb or set:eld or "
@@ -559,6 +559,7 @@ class MainActivity : AppCompatActivity() {
             this,
             listOf(
                 Model(R.drawable.transparent, "Un including"),
+                Model(R.drawable.afr, "AFR"),
                 Model(R.drawable.m21, "Core Set 2021 (M21)"),
                 Model(R.drawable.m20, "Core Set 2020 (M20)"),
                 Model(R.drawable.m19, "Core Set 2019 (M19)"),
@@ -600,66 +601,69 @@ class MainActivity : AppCompatActivity() {
                         ""
                     }
                     1 -> {
-                        "set:m21"
+                        "set:afr"
                     }
                     2 -> {
-                        "set:m20"
+                        "set:m21"
                     }
                     3 -> {
-                        "set:m19"
+                        "set:m20"
                     }
                     4 -> {
-                        "set:ori"
+                        "set:m19"
                     }
                     5 -> {
-                        "set:m15"
+                        "set:ori"
                     }
                     6 -> {
-                        "set:m14"
+                        "set:m15"
                     }
                     7 -> {
-                        "set:m13"
+                        "set:m14"
                     }
                     8 -> {
-                        "set:m12"
+                        "set:m13"
                     }
                     9 -> {
-                        "set:m11"
+                        "set:m12"
                     }
                     10 -> {
-                        "set:m10"
+                        "set:m11"
                     }
                     11 -> {
-                        "set:10e"
+                        "set:m10"
                     }
                     12 -> {
-                        "set:9ed"
+                        "set:10e"
                     }
                     13 -> {
-                        "set:8ed"
+                        "set:9ed"
                     }
                     14 -> {
-                        "set:7ed"
+                        "set:8ed"
                     }
                     15 -> {
-                        "set:6ed"
+                        "set:7ed"
                     }
                     16 -> {
-                        "set:5ed"
+                        "set:6ed"
                     }
                     17 -> {
-                        "set:4ed"
+                        "set:5ed"
                     }
                     18 -> {
-                        "set:3ed"
+                        "set:4ed"
                     }
                     19 -> {
-                        "set:2ed"
+                        "set:3ed"
                     }
                     20 -> {
-                        "set:leb"
+                        "set:2ed"
                     }
                     21 -> {
+                        "set:leb"
+                    }
+                    22 -> {
                         "set:lea"
                     }
                     else -> {
