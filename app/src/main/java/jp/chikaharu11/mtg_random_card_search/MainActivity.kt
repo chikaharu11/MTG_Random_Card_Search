@@ -1568,9 +1568,7 @@ class MainActivity : AppCompatActivity() {
                     binding.webView2.loadUrl("http://m.mtgwiki.com/wiki/$jaName2${enName2.replace(" ", "_")}")
                 } else {
                     binding.webView2.loadUrl("https://translate.google.com/translate?sl=auto&tl=en&u=http://m.mtgwiki.com/wiki/$jaName2${
-                        enName2.replace(" ",
-                            "_")
-                    }")
+                        enName2.replace(" ", "_")}")
                 }
                 return true
             }
