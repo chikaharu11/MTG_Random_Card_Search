@@ -559,7 +559,7 @@ class MainActivity : AppCompatActivity() {
             this,
             listOf(
                 Model(R.drawable.transparent, "Un including"),
-                Model(R.drawable.afr, "AFR"),
+                Model(R.drawable.afr, "Adventures in the Forgotten Realms (AFR)"),
                 Model(R.drawable.m21, "Core Set 2021 (M21)"),
                 Model(R.drawable.m20, "Core Set 2020 (M20)"),
                 Model(R.drawable.m19, "Core Set 2019 (M19)"),

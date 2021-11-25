@@ -191,6 +191,7 @@
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="@+id/checkBox8"
             app:layout_constraintTop_toBottomOf="@+id/checkBox11"
+            app:layout_constraintBottom_toTopOf="@id/textView"
             tools:ignore="MissingConstraints">
 
             <RadioButton
