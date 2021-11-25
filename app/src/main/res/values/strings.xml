@@ -28,7 +28,12 @@
     <string name="radiobutton3">Including These Colors</string>
     <string name="checkbox17">Reset</string>
     <string name="textview3">Core Set</string>
+    <string name="textview4">Rarity</string>
     <string name="checkbox18">Vanguard</string>
+    <string name="checkbox19">Common</string>
+    <string name="checkbox20">Uncommon</string>
+    <string name="checkbox21">Rare</string>
+    <string name="checkbox22">Mythic Rare</string>
     <string name="error">Could not open the wiki.</string>
     <string name="back">Back</string>
     <string name="search">Search</string>

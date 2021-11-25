@@ -28,7 +28,12 @@
     <string name="radiobutton3">〜のいずれかを含む色</string>
     <string name="checkbox17">リセット</string>
     <string name="textview3">基本セット</string>
+    <string name="textview4">レアリティ</string>
     <string name="checkbox18">ヴァンガード</string>
+    <string name="checkbox19">コモン</string>
+    <string name="checkbox20">アンコモン</string>
+    <string name="checkbox21">レア</string>
+    <string name="checkbox22">神話レア</string>
     <string name="error">wikiを開くことができませんでした</string>
     <string name="back">戻る</string>
     <string name="search">検索</string>
