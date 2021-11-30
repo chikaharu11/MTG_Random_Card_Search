@@ -1449,6 +1449,104 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
+    private val cardName = mapOf(
+        "Alluring Suitor" to "",
+        "Ambitious Farmhand" to "",
+        "Arlinn, the Pack's Hope" to "",
+        "Avabruck Caretaker" to "",
+        "Baithook Angler" to "",
+        "Ballista Watcher" to "",
+        "Baneblade Scoundrel" to "",
+        "Beloved Beggar" to "",
+        "Bereaved Survivor" to "",
+        "Binding Geist" to "",
+        "Biolume Egg" to "",
+        "Bird Admirer" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "" to "",
+        "Enduring Angel" to "不朽の天使",
+        "" to "",
+        "" to "")
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
 
@@ -1482,7 +1580,6 @@ class MainActivity : AppCompatActivity() {
                     try {
                         val api = URL(findViewById<TextView>(R.id.searchText).text.toString()).readText()
                         apiURL = JSONObject(api)
-                        println(apiURL.toString(4))
                         apiURLimage = apiURL.getJSONObject("image_uris").getString("normal")
                         apiName = apiURL.getString("name")
                         println(apiName)
@@ -1515,17 +1612,23 @@ class MainActivity : AppCompatActivity() {
             R.id.wiki -> {
                 thread {
                     try {
-                        val name = apiName.replace(" ", "-").lowercase(Locale.getDefault())
-                        val api =
-                            URL("https://api.scryfall.com/cards/search?q=!$name%20lang:ja").readText()
-                        val json = JSONObject(api)
-                        val data = json.getJSONArray("data").getJSONObject(0)
-                        val cardFaces = data.getJSONArray("card_faces").getJSONObject(0)
-                        val jaName = cardFaces.getString("printed_name")
-                        val enName = cardFaces.getString("name")
+                        println(cardName[apiName])
+                        if (cardName[apiName] != null){
+                            jaName2 = cardName[apiName].toString() + "/"
+                            enName2 = apiName
+                        } else {
+                            val name = apiName.replace(" ", "-").lowercase(Locale.getDefault())
+                            val api =
+                                URL("https://api.scryfall.com/cards/search?q=!$name%20lang:ja").readText()
+                            val json = JSONObject(api)
+                            val data = json.getJSONArray("data").getJSONObject(0)
+                            val cardFaces = data.getJSONArray("card_faces").getJSONObject(0)
+                            val jaName = cardFaces.getString("printed_name")
+                            val enName = cardFaces.getString("name")
 
-                        jaName2 = "$jaName/"
-                        enName2 = enName
+                            jaName2 = "$jaName/"
+                            enName2 = enName
+                        }
                     } catch (e: Exception) {
                         try {
                             val name = apiName.replace(" ", "-").lowercase(Locale.getDefault())
