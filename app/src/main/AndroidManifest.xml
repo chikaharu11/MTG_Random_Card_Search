@@ -7,9 +7,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/icon6_launcher"
+        android:icon="@mipmap/icon8"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/icon6_launcher_round"
+        android:roundIcon="@mipmap/icon8_round"
         android:supportsRtl="true"
         android:name="android.support.multidex.MultiDexApplication"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"

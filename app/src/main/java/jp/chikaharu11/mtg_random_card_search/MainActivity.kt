@@ -1473,14 +1473,14 @@ class MainActivity : AppCompatActivity() {
                     apiURL = JSONObject(api)
                     apiURLimage = apiURL.getJSONObject("image_uris").getString("normal")
                     apiName = apiURL.getString("name")
-                    println(apiName)
+                    println(apiURL)
                     apiURLimage2 = "file:///android_asset/card_back.html"
                 } catch (e: Exception) {
                     try {
                         val cardFaces = apiURL.getJSONArray("card_faces").getJSONObject(0)
                         val cardFaces2 = apiURL.getJSONArray("card_faces").getJSONObject(1)
                         apiName = cardFaces.getString("name")
-                        println(apiName)
+                        println(apiURL)
                         apiURLimage = cardFaces.getJSONObject("image_uris").getString("normal")
                         apiURLimage2 = cardFaces2.getJSONObject("image_uris").getString("normal")
 
@@ -1675,5 +1675,28 @@ class MainActivity : AppCompatActivity() {
         "Weary Prisoner" to "困憊の在監者",
         "Weaver of Blossoms" to "花の織り手",
         "Wedding Announcement" to "婚礼の発表",
-        "Wolfkin Outcast" to "狼族ののけ者")
+        "Wolfkin Outcast" to "狼族ののけ者",
+        "Befriending the Moths" to "蛾との親睦",
+        "Era of Enlightenment" to "啓蒙の時代",
+        "The Fall of Lord Konda" to "君主今田の凋落",
+        "Michiko's Reign of Truth" to "魅知子の真理の支配",
+        "The Restoration of Eiganjo" to "永岩城の修繕",
+        "The Modern Age" to "当世",
+        "Behold the Unspeakable" to "語られざるものの警告",
+        "Inventive Iteration" to "発明的反復",
+        "Okiba Reckoner Raid" to "大牙勢団の襲撃",
+        "Life of Toshiro Umezawa" to "梅澤俊郎の生涯",
+        "The Long Reach of Night" to "夜の長い陰",
+        "Tribute to Horobi" to "崩老卑への貢納",
+        "The Shattered States Era" to "戦乱時代",
+        "Kumano Faces Kakkazan" to "熊野と渇苛斬の対峙",
+        "Fable of the Mirror-Breaker" to "鏡割りの寓話",
+        "Tales of Master Seshiro" to "せし郎師匠の伝承",
+        "Azusa's Many Journeys" to "梓の幾多の旅",
+        "Boseiju Reaches Skyward" to "天空に到る母聖樹",
+        "Teachings of the Kirin" to "麒麟の教え",
+        "The Dragon-Kami Reborn" to "龍の神の再誕",
+        "Jugan Defends the Temple" to "珠眼の寺守り",
+        "Hidetsugu Consumes All" to "碑出告が全てを貪る",
+        "The Kami War" to "神の乱")
 }
