@@ -63,13 +63,11 @@ class MainActivity : AppCompatActivity() {
     private val locale: Locale = Locale.getDefault()
 
 
-    @SuppressLint("SetJavaScriptEnabled", "SetTextI18n", "ClickableViewAccessibility")
+    @SuppressLint("SetJavaScriptEnabled", "SetTextI18n", "ClickableViewAccessibility", "CutPasteId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
             .apply { setContentView(this.root) }
-        binding.toolbar.title = ""
-        setSupportActionBar(binding.toolbar)
 
         val webView = findViewById<WebView>(R.id.webView)
         val webView2 = findViewById<WebView>(R.id.webView2)
@@ -1440,13 +1438,139 @@ class MainActivity : AppCompatActivity() {
         textview3.setOnClickListener {
             spinner3.performClick()
         }
-    }
+        binding.imageButton.setOnClickListener {
+            when {
+                binding.webView2.isVisible && binding.webView.isInvisible -> {
+                    binding.webView2.visibility = View.INVISIBLE
+                    binding.layoutView.visibility = View.VISIBLE
+                }
+                binding.webView2.isVisible -> {
+                    binding.webView2.visibility = View.INVISIBLE
+                }
+                binding.webView.isVisible -> {
+                    binding.webView.visibility = View.INVISIBLE
+                    binding.layoutView.visibility = View.VISIBLE
+                }
+                binding.webView3.isVisible -> {
+                    binding.webView.visibility = View.VISIBLE
+                    binding.webView3.visibility = View.INVISIBLE
+                    binding.layoutView.visibility = View.INVISIBLE
+                }
+                binding.webView.isInvisible -> {
+                    binding.webView.visibility = View.VISIBLE
+                    binding.layoutView.visibility = View.INVISIBLE
+                }
+            }
+        }
+        binding.imageButton2.setOnClickListener {
+            thread {
+                try {
+                    val api = URL(findViewById<TextView>(R.id.searchText).text.toString()).readText()
+                    apiURL = JSONObject(api)
+                    apiURLimage = apiURL.getJSONObject("image_uris").getString("normal")
+                    apiName = apiURL.getString("name")
+                    println(apiName)
+                    apiURLimage2 = "file:///android_asset/card_back.html"
+                } catch (e: Exception) {
+                    try {
+                        val cardFaces = apiURL.getJSONArray("card_faces").getJSONObject(0)
+                        val cardFaces2 = apiURL.getJSONArray("card_faces").getJSONObject(1)
+                        apiName = cardFaces.getString("name")
+                        println(apiName)
+                        apiURLimage = cardFaces.getJSONObject("image_uris").getString("normal")
+                        apiURLimage2 = cardFaces2.getJSONObject("image_uris").getString("normal")
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        val inflater: MenuInflater = menuInflater
-        inflater.inflate(R.menu.menu_item, menu)
+                    } catch (e: Exception) {
+                        apiURLimage = "file:///android_asset/card_back.html"
+                        apiURLimage2 = "file:///android_asset/card_back.html"
+                    }
+                }
+            }.join()
+            binding.webView.setInitialScale(1)
+            binding.webView3.setInitialScale(1)
+            binding.webView.loadUrl(apiURLimage)
+            binding.webView3.loadUrl(apiURLimage2)
+            binding.layoutView.visibility = View.INVISIBLE
+            binding.webView.visibility = View.VISIBLE
+            binding.webView3.visibility = View.INVISIBLE
+            binding.webView2.visibility = View.INVISIBLE
+        }
+        binding.imageButton3.setOnClickListener {
+            thread {
+                try {
+                    println(cardName[apiName])
+                    if (cardName[apiName] != null){
+                        jaName2 = cardName[apiName].toString() + "/"
+                        enName2 = apiName
+                    } else {
+                        val name = apiName.replace(" ", "-").lowercase(Locale.getDefault())
+                        val api =
+                            URL("https://api.scryfall.com/cards/search?q=!$name%20lang:ja").readText()
+                        val json = JSONObject(api)
+                        val data = json.getJSONArray("data").getJSONObject(0)
+                        val cardFaces = data.getJSONArray("card_faces").getJSONObject(0)
+                        val jaName = cardFaces.getString("printed_name")
+                        val enName = cardFaces.getString("name")
 
-        return true
+                        jaName2 = "$jaName/"
+                        enName2 = enName
+                    }
+                } catch (e: Exception) {
+                    try {
+                        val name = apiName.replace(" ", "-").lowercase(Locale.getDefault())
+                        val api =
+                            URL("https://api.scryfall.com/cards/search?q=!$name%20lang:ja").readText()
+                        val json = JSONObject(api)
+                        val data = json.getJSONArray("data").getJSONObject(0)
+                        val jaName = data.getString("printed_name")
+                        val enName = data.getString("name")
+
+                        jaName2 = "$jaName/"
+                        enName2 = enName
+                    } catch (e: Exception) {
+                        try {
+                            val name = apiName.replace(" ", "-").lowercase(Locale.getDefault())
+                            val api =
+                                URL("https://api.scryfall.com/cards/search?q=!$name").readText()
+                            val json = JSONObject(api)
+                            val data = json.getJSONArray("data").getJSONObject(0)
+                            val enName = data.getString("name")
+
+                            jaName2 = ""
+                            enName2 = enName
+                        } catch (e: Exception) {
+                            handler.post {
+                                Toast.makeText(applicationContext,
+                                    R.string.error,
+                                    Toast.LENGTH_LONG)
+                                    .show()
+                            }
+                        }
+                    }
+                }
+            }.join()
+
+            binding.layoutView.visibility = View.INVISIBLE
+            binding.webView2.visibility = View.VISIBLE
+            binding.webView3.visibility = View.INVISIBLE
+            if (locale == Locale.JAPAN) {
+                binding.webView2.loadUrl("http://m.mtgwiki.com/wiki/$jaName2${enName2.replace(" ", "_")}")
+            } else {
+                binding.webView2.loadUrl("https://translate.google.com/translate?sl=auto&tl=en&u=http://m.mtgwiki.com/wiki/$jaName2${
+                    enName2.replace(" ", "_")}")
+            }
+        }
+        binding.imageButton4.setOnClickListener {
+            AlertDialog.Builder(this)
+                .setTitle(R.string.exit2)
+                .setPositiveButton("YES") { _, _ ->
+                    finish()
+                }
+                .setNegativeButton("NO") { _, _ ->
+
+                }
+                .show()
+        }
     }
 
     private val cardName = mapOf(
@@ -1548,148 +1672,4 @@ class MainActivity : AppCompatActivity() {
         "Weaver of Blossoms" to "花の織り手",
         "Wedding Announcement" to "婚礼の発表",
         "Wolfkin Outcast" to "狼族ののけ者")
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-
-            R.id.back -> {
-                when {
-                    binding.webView2.isVisible && binding.webView.isInvisible -> {
-                        binding.webView2.visibility = View.INVISIBLE
-                        binding.layoutView.visibility = View.VISIBLE
-                    }
-                    binding.webView2.isVisible -> {
-                        binding.webView2.visibility = View.INVISIBLE
-                    }
-                    binding.webView.isVisible -> {
-                        binding.webView.visibility = View.INVISIBLE
-                        binding.layoutView.visibility = View.VISIBLE
-                    }
-                    binding.webView3.isVisible -> {
-                        binding.webView.visibility = View.VISIBLE
-                        binding.webView3.visibility = View.INVISIBLE
-                        binding.layoutView.visibility = View.INVISIBLE
-                    }
-                    binding.webView.isInvisible -> {
-                        binding.webView.visibility = View.VISIBLE
-                        binding.layoutView.visibility = View.INVISIBLE
-                    }
-                }
-                return true
-            }
-            R.id.search -> {
-                thread {
-                    try {
-                        val api = URL(findViewById<TextView>(R.id.searchText).text.toString()).readText()
-                        apiURL = JSONObject(api)
-                        apiURLimage = apiURL.getJSONObject("image_uris").getString("normal")
-                        apiName = apiURL.getString("name")
-                        println(apiName)
-                        apiURLimage2 = "file:///android_asset/card_back.html"
-                    } catch (e: Exception) {
-                        try {
-                            val cardFaces = apiURL.getJSONArray("card_faces").getJSONObject(0)
-                            val cardFaces2 = apiURL.getJSONArray("card_faces").getJSONObject(1)
-                            apiName = cardFaces.getString("name")
-                            println(apiName)
-                            apiURLimage = cardFaces.getJSONObject("image_uris").getString("normal")
-                            apiURLimage2 = cardFaces2.getJSONObject("image_uris").getString("normal")
-
-                        } catch (e: Exception) {
-                            apiURLimage = "file:///android_asset/card_back.html"
-                            apiURLimage2 = "file:///android_asset/card_back.html"
-                        }
-                    }
-                }.join()
-                binding.webView.setInitialScale(1)
-                binding.webView3.setInitialScale(1)
-                binding.webView.loadUrl(apiURLimage)
-                binding.webView3.loadUrl(apiURLimage2)
-                binding.layoutView.visibility = View.INVISIBLE
-                binding.webView.visibility = View.VISIBLE
-                binding.webView3.visibility = View.INVISIBLE
-                binding.webView2.visibility = View.INVISIBLE
-                return true
-            }
-            R.id.wiki -> {
-                thread {
-                    try {
-                        println(cardName[apiName])
-                        if (cardName[apiName] != null){
-                            jaName2 = cardName[apiName].toString() + "/"
-                            enName2 = apiName
-                        } else {
-                            val name = apiName.replace(" ", "-").lowercase(Locale.getDefault())
-                            val api =
-                                URL("https://api.scryfall.com/cards/search?q=!$name%20lang:ja").readText()
-                            val json = JSONObject(api)
-                            val data = json.getJSONArray("data").getJSONObject(0)
-                            val cardFaces = data.getJSONArray("card_faces").getJSONObject(0)
-                            val jaName = cardFaces.getString("printed_name")
-                            val enName = cardFaces.getString("name")
-
-                            jaName2 = "$jaName/"
-                            enName2 = enName
-                        }
-                    } catch (e: Exception) {
-                        try {
-                            val name = apiName.replace(" ", "-").lowercase(Locale.getDefault())
-                            val api =
-                                URL("https://api.scryfall.com/cards/search?q=!$name%20lang:ja").readText()
-                            val json = JSONObject(api)
-                            val data = json.getJSONArray("data").getJSONObject(0)
-                            val jaName = data.getString("printed_name")
-                            val enName = data.getString("name")
-
-                            jaName2 = "$jaName/"
-                            enName2 = enName
-                        } catch (e: Exception) {
-                            try {
-                                val name = apiName.replace(" ", "-").lowercase(Locale.getDefault())
-                                val api =
-                                    URL("https://api.scryfall.com/cards/search?q=!$name").readText()
-                                val json = JSONObject(api)
-                                val data = json.getJSONArray("data").getJSONObject(0)
-                                val enName = data.getString("name")
-
-                                jaName2 = ""
-                                enName2 = enName
-                            } catch (e: Exception) {
-                                handler.post {
-                                    Toast.makeText(applicationContext,
-                                        R.string.error,
-                                        Toast.LENGTH_LONG)
-                                        .show()
-                                }
-                            }
-                        }
-                    }
-                }.join()
-
-                binding.layoutView.visibility = View.INVISIBLE
-                binding.webView2.visibility = View.VISIBLE
-                binding.webView3.visibility = View.INVISIBLE
-                if (locale == Locale.JAPAN) {
-                    binding.webView2.loadUrl("http://m.mtgwiki.com/wiki/$jaName2${enName2.replace(" ", "_")}")
-                } else {
-                    binding.webView2.loadUrl("https://translate.google.com/translate?sl=auto&tl=en&u=http://m.mtgwiki.com/wiki/$jaName2${
-                        enName2.replace(" ", "_")}")
-                }
-                return true
-            }
-            R.id.exit -> {
-                AlertDialog.Builder(this)
-                    .setTitle(R.string.exit2)
-                    .setPositiveButton("YES") { _, _ ->
-                        finish()
-                    }
-                    .setNegativeButton("NO") { _, _ ->
-
-                    }
-                    .show()
-                return true
-            }
-            else -> return super.onOptionsItemSelected(item)
-        }
-    }
 }
