@@ -361,6 +361,7 @@ class MainActivity : AppCompatActivity() {
                 Model(R.drawable.transparent, "Duel"),
                 Model(R.drawable.transparent, "Oldschool"),
                 Model(R.drawable.transparent, "Premodern"),
+                Model(R.drawable.neo, "Kamigawa: Neon Dynasty"),
                 Model(R.drawable.mid, "Innistrad: Midnight Hunt ~ Innistrad: Crimson Vow"),
                 Model(R.drawable.znr, "Zendikar Rising ~ Strixhaven: School of Mages"),
                 Model(R.drawable.eld, "Throne of Eldraine ~ Ikoria: Lair of Behemoths"),
@@ -458,96 +459,99 @@ class MainActivity : AppCompatActivity() {
                         "format:Premodern "
                     }
                     16 -> {
-                        "set:mid or set:vow or "
+                        "set:neo or "
                     }
                     17 -> {
-                        "set:stx or set:khm or set:znr or "
+                        "set:mid or set:vow or "
                     }
                     18 -> {
-                        "set:iko or set:thb or set:eld or "
+                        "set:stx or set:khm or set:znr or "
                     }
                     19 -> {
-                        "block:grn or "
+                        "set:iko or set:thb or set:eld or "
                     }
                     20 -> {
-                        "block:xln or set:dom or "
+                        "block:grn or "
                     }
                     21 -> {
-                        "block:akh or "
+                        "block:xln or set:dom or "
                     }
                     22 -> {
-                        "block:kld or "
+                        "block:akh or "
                     }
                     23 -> {
-                        "block:soi or "
+                        "block:kld or "
                     }
                     24 -> {
-                        "block:bfz or "
+                        "block:soi or "
                     }
                     25 -> {
-                        "block:ktk or "
+                        "block:bfz or "
                     }
                     26 -> {
-                        "block:ths or "
+                        "block:ktk or "
                     }
                     27 -> {
-                        "block:rtr or "
+                        "block:ths or "
                     }
                     28 -> {
-                        "block:isd or "
+                        "block:rtr or "
                     }
                     29 -> {
-                        "block:som or "
+                        "block:isd or "
                     }
                     30 -> {
-                        "block:zen or "
+                        "block:som or "
                     }
                     31 -> {
-                        "block:ala or "
+                        "block:zen or "
                     }
                     32 -> {
-                        "block:shm or "
+                        "block:ala or "
                     }
                     33 -> {
-                        "block:lrw or "
+                        "block:shm or "
                     }
                     34 -> {
-                        "block:tsp or "
+                        "block:lrw or "
                     }
                     35 -> {
-                        "block:rav or "
+                        "block:tsp or "
                     }
                     36 -> {
-                        "block:chk or "
+                        "block:rav or "
                     }
                     37 -> {
-                        "block:mrd or "
+                        "block:chk or "
                     }
                     38 -> {
-                        "block:ons or "
+                        "block:mrd or "
                     }
                     39 -> {
-                        "block:ody or "
+                        "block:ons or "
                     }
                     40 -> {
-                        "block:inv or "
+                        "block:ody or "
                     }
                     41 -> {
-                        "block:mmq or "
+                        "block:inv or "
                     }
                     42 -> {
-                        "block:usg or "
+                        "block:mmq or "
                     }
                     43 -> {
-                        "block:tmp or "
+                        "block:usg or "
                     }
                     44 -> {
-                        "block:mir or "
+                        "block:tmp or "
                     }
                     45 -> {
-                        "block:ice or "
+                        "block:mir or "
                     }
                     46 -> {
+                        "block:ice or "
+                    }
+                    47 -> {
                         "set:hml or set:fem or set:drk or set:leg or set:atq or set:arn or "
                     }
                     else -> {
