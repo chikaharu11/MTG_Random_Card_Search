@@ -91,6 +91,7 @@
         </com.google.android.gms.ads.AdView>
 
         <CheckBox
+            android:theme="@style/MyCheckBox"
             android:id="@+id/checkBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -103,6 +104,7 @@
             tools:ignore="MissingConstraints" />
 
         <CheckBox
+            android:theme="@style/MyCheckBox"
             android:id="@+id/checkBox2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -113,6 +115,7 @@
             tools:ignore="MissingConstraints" />
 
         <CheckBox
+            android:theme="@style/MyCheckBox"
             android:id="@+id/checkBox3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -123,6 +126,7 @@
             tools:ignore="MissingConstraints" />
 
         <CheckBox
+            android:theme="@style/MyCheckBox"
             android:id="@+id/checkBox4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -133,6 +137,7 @@
             tools:ignore="MissingConstraints" />
 
         <CheckBox
+            android:theme="@style/MyCheckBox"
             android:id="@+id/checkBox5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -143,6 +148,7 @@
             tools:ignore="MissingConstraints" />
 
         <CheckBox
+            android:theme="@style/MyCheckBox"
             android:id="@+id/checkBox6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -153,6 +159,7 @@
             tools:ignore="MissingConstraints" />
 
         <CheckBox
+            android:theme="@style/MyCheckBox"
             android:id="@+id/checkBox7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -195,6 +202,7 @@
         </RadioGroup>
 
         <CheckBox
+            android:theme="@style/MyCheckBox"
             android:id="@+id/checkBox8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -205,6 +213,7 @@
             tools:ignore="MissingConstraints" />
 
         <CheckBox
+            android:theme="@style/MyCheckBox"
             android:id="@+id/checkBox9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -215,6 +224,7 @@
             tools:ignore="MissingConstraints" />
 
         <CheckBox
+            android:theme="@style/MyCheckBox"
             android:id="@+id/checkBox10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -225,6 +235,7 @@
             tools:ignore="MissingConstraints" />
 
         <CheckBox
+            android:theme="@style/MyCheckBox"
             android:id="@+id/checkBox11"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -236,6 +247,7 @@
             tools:ignore="MissingConstraints" />
 
         <CheckBox
+            android:theme="@style/MyCheckBox"
             android:id="@+id/checkBox12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -246,6 +258,7 @@
             tools:ignore="MissingConstraints" />
 
         <CheckBox
+            android:theme="@style/MyCheckBox"
             android:id="@+id/checkBox13"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -256,6 +269,7 @@
             tools:ignore="MissingConstraints" />
 
         <CheckBox
+            android:theme="@style/MyCheckBox"
             android:id="@+id/checkBox14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -265,6 +279,7 @@
             app:layout_constraintTop_toBottomOf="@+id/spinner3" />
 
         <CheckBox
+            android:theme="@style/MyCheckBox"
             android:id="@+id/checkBox15"
             android:layout_width="181dp"
             android:layout_height="wrap_content"
@@ -275,6 +290,7 @@
             app:layout_constraintTop_toBottomOf="@+id/checkBox14" />
 
         <CheckBox
+            android:theme="@style/MyCheckBox"
             android:id="@+id/checkBox16"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -285,6 +301,7 @@
             tools:ignore="MissingConstraints" />
 
         <CheckBox
+            android:theme="@style/MyCheckBox"
             android:id="@+id/checkBox17"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -293,6 +310,7 @@
             app:layout_constraintStart_toStartOf="@+id/checkBox15" />
 
         <CheckBox
+            android:theme="@style/MyCheckBox"
             android:id="@+id/checkBox18"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -314,6 +332,7 @@
             app:layout_constraintTop_toBottomOf="@+id/checkBox18" />
 
         <CheckBox
+            android:theme="@style/MyCheckBox"
             android:id="@+id/checkBox19"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -324,6 +343,7 @@
             tools:ignore="TouchTargetSizeCheck" />
 
         <CheckBox
+            android:theme="@style/MyCheckBox"
             android:id="@+id/checkBox20"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -334,6 +354,7 @@
             tools:ignore="TouchTargetSizeCheck" />
 
         <CheckBox
+            android:theme="@style/MyCheckBox"
             android:id="@+id/checkBox21"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -344,6 +365,7 @@
             tools:ignore="TouchTargetSizeCheck" />
 
         <CheckBox
+            android:theme="@style/MyCheckBox"
             android:id="@+id/checkBox22"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -433,54 +455,54 @@
 
     <ImageButton
         android:id="@+id/imageButton"
-        android:layout_width="64dp"
+        android:layout_width="0dp"
         android:layout_height="64dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/imageButton2"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/webView"
-        android:scaleType="fitXY"
+        android:backgroundTint="#EDEDED"
+        android:scaleType="fitCenter"
         app:srcCompat="@drawable/arrowleft"
         tools:ignore="ContentDescription,MissingConstraints" />
 
     <ImageButton
         android:id="@+id/imageButton2"
-        android:layout_width="64dp"
+        android:layout_width="0dp"
         android:layout_height="64dp"
         app:layout_constraintEnd_toStartOf="@+id/imageButton3"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/imageButton"
         app:layout_constraintTop_toTopOf="@+id/imageButton"
         app:layout_constraintBottom_toBottomOf="@id/imageButton"
-        android:scaleType="fitXY"
+        android:backgroundTint="#EDEDED"
+        android:scaleType="fitCenter"
         app:srcCompat="@drawable/outline_search_black_48dp"
         tools:ignore="ContentDescription,MissingConstraints" />
 
     <ImageButton
         android:id="@+id/imageButton3"
-        android:layout_width="64dp"
+        android:layout_width="0dp"
         android:layout_height="64dp"
         app:layout_constraintEnd_toStartOf="@+id/imageButton4"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/imageButton2"
         app:layout_constraintTop_toTopOf="@+id/imageButton"
         app:layout_constraintBottom_toBottomOf="@id/imageButton"
-        android:scaleType="fitXY"
-        app:srcCompat="@drawable/outline_feed_black_48dp"
+        android:backgroundTint="#EDEDED"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/wiki"
         tools:ignore="ContentDescription,MissingConstraints" />
 
     <ImageButton
         android:id="@+id/imageButton4"
-        android:layout_width="64dp"
+        android:layout_width="0dp"
         android:layout_height="64dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/imageButton3"
         app:layout_constraintTop_toTopOf="@+id/imageButton"
         app:layout_constraintBottom_toBottomOf="@id/imageButton"
-        android:scaleType="fitXY"
-        app:srcCompat="@drawable/outline_power_settings_new_black_48dp"
+        android:backgroundTint="#EDEDED"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/exit"
         tools:ignore="ContentDescription,MissingConstraints" />
 
 

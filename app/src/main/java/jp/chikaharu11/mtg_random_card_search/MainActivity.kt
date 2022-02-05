@@ -234,7 +234,7 @@ class MainActivity : AppCompatActivity() {
         binding.spinner.adapter = ModelArrayAdapter(
             this,
             listOf(
-                Model(R.drawable.transparent, "Un specified"),
+                Model(R.drawable.transparent, getString(R.string.specified)),
                 Model(R.drawable.c0, "0"),
                 Model(R.drawable.c1, "1"),
                 Model(R.drawable.c2, "2"),
@@ -345,7 +345,7 @@ class MainActivity : AppCompatActivity() {
         binding.spinner2.adapter = ModelArrayAdapter(
             this,
             listOf(
-                Model(R.drawable.transparent, "Un specified                        "),
+                Model(R.drawable.transparent, getString(R.string.specified)),
                 Model(R.drawable.transparent, "Standard"),
                 Model(R.drawable.transparent, "Future"),
                 Model(R.drawable.transparent, "Historic"),
@@ -569,7 +569,7 @@ class MainActivity : AppCompatActivity() {
         binding.spinner3.adapter = ModelArrayAdapter(
             this,
             listOf(
-                Model(R.drawable.transparent, "Un including"),
+                Model(R.drawable.transparent, getString(R.string.specified)),
                 Model(R.drawable.afr, "Adventures in the Forgotten Realms (AFR)"),
                 Model(R.drawable.m21, "Core Set 2021 (M21)"),
                 Model(R.drawable.m20, "Core Set 2020 (M20)"),

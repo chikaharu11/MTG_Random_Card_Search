@@ -15,4 +15,10 @@
     <style name="Toolbar" parent="@style/Widget.AppCompat.Toolbar">
     <item name="android:theme">@style/ToolbarTheme</item>
     </style>
+
+    <style name="MyCheckBox" parent="Theme.AppCompat.Light">
+
+        <item name="colorControlActivated">#2f2f2f</item>
+    </style>
+
 </resources>

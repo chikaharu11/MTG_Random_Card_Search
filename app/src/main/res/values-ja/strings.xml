@@ -39,4 +39,5 @@
     <string name="search">検索</string>
     <string name="wiki">Wiki</string>
     <string name="exit">終了</string>
+    <string name="specified">指定なし</string>
 </resources>

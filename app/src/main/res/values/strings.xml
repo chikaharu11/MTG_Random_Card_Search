@@ -39,4 +39,5 @@
     <string name="search">Search</string>
     <string name="wiki">Wiki</string>
     <string name="exit">Exit</string>
+    <string name="specified">No specified</string>
 </resources>
