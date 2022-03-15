@@ -10,8 +10,8 @@ android {
         applicationId "jp.chikaharu11.mtg_random_card_search"
         minSdkVersion 23
         targetSdkVersion 31
-        versionCode 8
-        versionName "8"
+        versionCode 9
+        versionName "9"
         multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
